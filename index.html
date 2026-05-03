@@ -83,6 +83,7 @@
             color: #666;
             margin-top: 10px;
             font-style: italic;
+            line-height: 1.5;
         }
         
         .required {
@@ -101,21 +102,15 @@
             margin-right: 10px;
         }
         
-        input[type="text"], input[type="number"], textarea {
+        input[type="text"], input[type="number"], input[type="tel"] {
             padding: 8px;
             border: 1px solid #ddd;
             border-radius: 4px;
             font-size: 14px;
         }
         
-        input[type="number"] {
-            width: 100px;
-        }
-        
-        textarea {
-            width: 100%;
-            min-height: 80px;
-            resize: vertical;
+        input[type="number"], input[type="tel"] {
+            width: 200px;
         }
         
         .video-section {
@@ -129,7 +124,7 @@
         
         .video-section h2 {
             margin-bottom: 20px;
-            font-size: 20px;
+            font-size: 18px;
         }
         
         .video-container {
@@ -169,18 +164,6 @@
         
         .submit-btn:hover {
             background-color: #45a049;
-        }
-        
-        .submit-btn:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-        }
-        
-        .error {
-            color: red;
-            font-size: 14px;
-            margin-top: 5px;
-            display: none;
         }
         
         .group-info {
@@ -242,13 +225,13 @@
         <div class="intro">
             <p><strong>안녕하십니까?</strong></p>
             
-            <p>저희는 부산대학교 미디어커뮤니케이션학과에서 커뮤니케이션/심리조사계 수업을 수강 중인 강민주, 안혜림, 임유진입니다.</p>
+            <p>저희는 부산대학교 미디어커뮤니케이션학과에서 커뮤니케이션기초통계 수업을 수강 중인 강민주, 안혜림, 임유진입니다.</p>
             
             <p>저희는 유튜브 중간 광고가 시청자들에게 어떤 브랜드 태도를 지니게 하는지 알아보고자 본 조사를 실시하고 있습니다.</p>
             
-            <p>이번 조사는 커뮤니케이션/심리조사계 수업 과제의 일환으로 시행되고 있습니다.<br>
+            <p>이번 조사는 커뮤니케이션기초통계 수업 과제의 일환으로 시행되고 있습니다.<br>
             선생님의 의견은 유튜브 광고 이용 편의성을 위한 소중한 자료로 활용될 것입니다.<br>
-            본 설문 조사에 응하는 데에 걸리는 시간은 약 10분 내외로, 잠시만 시간을 내셔서 설문에 응해 주시면 감사하겠습니다.</p>
+            본 설문 조사에 응하는 데 걸리는 시간은 약 10분 내외로, 잠시만 시간을 내셔서 설문에 응해 주시면 감사하겠습니다.</p>
             
             <p><strong>끝으로, 모든 자료는 익명으로 처리되며, 통계를 내기 위한 목적 이외에는 사용되는 일이 없다는 점을 말씀드립니다.</strong></p>
             
@@ -282,20 +265,12 @@
             <!-- 통제요인 설문 섹션 -->
             <div class="section-header">통제요인 설문</div>
             
-            <div class="video-section">
-                <h2>아래 영상을 시청한 후 질문에 답해주세요</h2>
-                
-                <div class="video-container" id="videoContainer">
-                    <!-- JavaScript로 동적 삽입 -->
-                </div>
-            </div>
-            
-            <!-- 질문 3: 모나미 제품 사용 -->
+            <!-- 질문 3: 유튜브 프리미엄 -->
             <div class="question">
-                <div class="question-title">3. 귀하는 모나미 제품을 사용한 적이 있습니까? <span class="required">*</span></div>
+                <div class="question-title">3. 현재 유튜브 프리미엄(유튜브 광고가 제거되는 유료 요금제)을 사용하고 계시거나 사용해본 경험이 있으십니까? <span class="required">*</span></div>
                 <div class="options">
                     <div class="option">
-                        <label><input type="radio" name="q3" value="예" required> 1. 예</label>
+                        <label><input type="radio" name="q3" value="네" required> 1. 네</label>
                     </div>
                     <div class="option">
                         <label><input type="radio" name="q3" value="아니오"> 2. 아니오</label>
@@ -303,21 +278,25 @@
                 </div>
             </div>
             
-            <!-- 질문 4-1 -->
+            <!-- 질문 4-1: 모나미 인지 -->
             <div class="question">
-                <div class="question-title">4-1. 모나미 제품은 신뢰할 수 있다. <span class="required">*</span></div>
-                <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q4_1" value="1" required> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q4_1" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q4_1" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q4_1" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q4_1" value="5"> 5. 전혀 그렇지 않다</label></div>
+                <div class="question-title">4-1. 필기구 브랜드 '모나미(monami)'를 알고 계십니까? <span class="required">*</span></div>
+                <div class="question-note">
+                    *지인태. (2024). 스포츠 브랜드 광고 유형 및 제품유형이 스포츠브랜드 이미지, 브랜드태도와 구매의도에 미치는 영향 : Z세대 소비자를 중심으로 [석사학위논문, 연세대학교].에 사용된 광고 긍정적 태도 문항을 수정하여 사용함.
+                </div>
+                <div class="options">
+                    <div class="option">
+                        <label><input type="radio" name="q4_1" value="네" required> 1. 네</label>
+                    </div>
+                    <div class="option">
+                        <label><input type="radio" name="q4_1" value="아니오"> 2. 아니오</label>
+                    </div>
                 </div>
             </div>
             
             <!-- 질문 4-2 -->
             <div class="question">
-                <div class="question-title">4-2. 모나미 제품은 정직하다. <span class="required">*</span></div>
+                <div class="question-title">4-2. 나는 모나미 제품에 대해 호의적이다. <span class="required">*</span></div>
                 <div class="likert-scale">
                     <div class="option"><label><input type="radio" name="q4_2" value="1" required> 1. 매우 그렇다</label></div>
                     <div class="option"><label><input type="radio" name="q4_2" value="2"> 2. 그렇다</label></div>
@@ -351,83 +330,43 @@
                 </div>
             </div>
 
-            <!-- ========== A/B 집단 나누어 실험 영상 ========== -->
-            <div class="section-header">실험 영상</div>
+            <!-- ========== A/B 집단 실험 영상 ========== -->
+            <div class="section-header">A, B 집단으로 나누어 실험</div>
             
             <div class="video-section">
-                <h2>아래 영상을 시청한 후 질문에 답해주세요</h2>
+                <h2>다음 설문에 응답하기 위해 아래 3분 이내 길이의 영상을 스킵하지 말고 끝까지 시청해주시길 부탁드립니다.</h2>
                 
                 <div class="video-container" id="experimentVideoContainer">
                     <!-- JavaScript로 동적 삽입 (A/B 그룹별 다른 영상) -->
                 </div>
             </div>
 
-            <!-- ========== 침입성 지각 ========== -->
-            <div class="section-header">침입성 지각</div>
-
-            <!-- 질문 5-1 -->
+            <!-- 질문 5: 영상 시청 확인 -->
             <div class="question">
-                <div class="question-title">5-1. 앞 영상에서 나온 중간 광고는 성가시다. <span class="required">*</span></div>
-                <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q5_1" value="1" required> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q5_1" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q5_1" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q5_1" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q5_1" value="5"> 5. 전혀 그렇지 않다</label></div>
+                <div class="question-title">5. 영상을 스킵하지 않고 끝까지 시청하셨습니까? <span class="required">*</span></div>
+                <div class="options">
+                    <div class="option">
+                        <label><input type="radio" name="q5" value="네" required> 1. 네</label>
+                    </div>
+                    <div class="option">
+                        <label><input type="radio" name="q5" value="아니오"> 2. 아니오</label>
+                    </div>
                 </div>
             </div>
 
-            <!-- 질문 5-2 -->
-            <div class="question">
-                <div class="question-title">5-2. 앞 영상에서 나온 중간 광고는 거슬린다. <span class="required">*</span></div>
-                <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q5_2" value="1" required> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q5_2" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q5_2" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q5_2" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q5_2" value="5"> 5. 전혀 그렇지 않다</label></div>
-                </div>
-            </div>
+            <!-- ========== 침입성 지각 정도 ========== -->
+            <div class="section-header">침입성 지각 정도</div>
 
-            <!-- 질문 5-3 -->
             <div class="question">
-                <div class="question-title">5-3. 앞 영상에서 나온 중간 광고는 짜증난다. <span class="required">*</span></div>
-                <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q5_3" value="1" required> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q5_3" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q5_3" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q5_3" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q5_3" value="5"> 5. 전혀 그렇지 않다</label></div>
-                </div>
-            </div>
-
-            <!-- 질문 5-4 -->
-            <div class="question">
-                <div class="question-title">5-4. 앞 영상에서 나온 중간 광고는 방해가 된다. <span class="required">*</span></div>
-                <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q5_4" value="1" required> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q5_4" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q5_4" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q5_4" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q5_4" value="5"> 5. 전혀 그렇지 않다</label></div>
-                </div>
-            </div>
-
-            <!-- 질문 5-5 -->
-            <div class="question">
-                <div class="question-title">5-5. 앞 영상에서 나온 중간 광고는 과도하게 갑자기 생각한다. <span class="required">*</span></div>
-                <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q5_5" value="1" required> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q5_5" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q5_5" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q5_5" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q5_5" value="5"> 5. 전혀 그렇지 않다</label></div>
+                <div class="question-title">6. 앞의 영상을 보고 중간 광고에 대해 떠오른 생각에 맞게 답해주십시오.</div>
+                <div class="question-note">
+                    *양윤직, 조창환. (2012). 광고 매체별 광고회피 수준과 요인에 관한 연구. 광고연구,(92), 355-381.에 사용된 지각된 침입성 문항을 수정 및 축소하여 활용함.
                 </div>
             </div>
 
             <!-- 질문 6-1 -->
             <div class="question">
-                <div class="question-title">6-1. 앞 영상에서 나온 중간 광고는 내가 원하지 않는 것을 강요한다. <span class="required">*</span></div>
+                <div class="question-title">6-1. 앞 영상에서 나온 중간 광고는 시간을 낭비하게 한다. <span class="required">*</span></div>
                 <div class="likert-scale">
                     <div class="option"><label><input type="radio" name="q6_1" value="1" required> 1. 매우 그렇다</label></div>
                     <div class="option"><label><input type="radio" name="q6_1" value="2"> 2. 그렇다</label></div>
@@ -439,7 +378,7 @@
 
             <!-- 질문 6-2 -->
             <div class="question">
-                <div class="question-title">6-2. 앞 영상에서 나온 중간 광고는 나의 자유를 침해한다. <span class="required">*</span></div>
+                <div class="question-title">6-2. 앞 영상에서 나온 중간 광고는 영상 이용에 방해가 된다. <span class="required">*</span></div>
                 <div class="likert-scale">
                     <div class="option"><label><input type="radio" name="q6_2" value="1" required> 1. 매우 그렇다</label></div>
                     <div class="option"><label><input type="radio" name="q6_2" value="2"> 2. 그렇다</label></div>
@@ -451,7 +390,7 @@
 
             <!-- 질문 6-3 -->
             <div class="question">
-                <div class="question-title">6-3. 앞 영상에서 나온 중간 광고는 나의 선택권을 제한한다. <span class="required">*</span></div>
+                <div class="question-title">6-3. 앞 영상에서 나온 중간 광고는 강제적이고 거슬린다. <span class="required">*</span></div>
                 <div class="likert-scale">
                     <div class="option"><label><input type="radio" name="q6_3" value="1" required> 1. 매우 그렇다</label></div>
                     <div class="option"><label><input type="radio" name="q6_3" value="2"> 2. 그렇다</label></div>
@@ -463,7 +402,7 @@
 
             <!-- 질문 6-4 -->
             <div class="question">
-                <div class="question-title">6-4. 앞 영상에서 나온 중간 광고는 나를 통제한다. <span class="required">*</span></div>
+                <div class="question-title">6-4. 앞 영상에서 나온 중간 광고는 짜증난다. <span class="required">*</span></div>
                 <div class="likert-scale">
                     <div class="option"><label><input type="radio" name="q6_4" value="1" required> 1. 매우 그렇다</label></div>
                     <div class="option"><label><input type="radio" name="q6_4" value="2"> 2. 그렇다</label></div>
@@ -475,7 +414,7 @@
 
             <!-- 질문 6-5 -->
             <div class="question">
-                <div class="question-title">6-5. 앞 영상에서 나온 중간 광고는 과도하게 갑자기 생각한다. <span class="required">*</span></div>
+                <div class="question-title">6-5. 앞 영상에서 나온 중간 광고는 과도하게 길다고 생각한다. <span class="required">*</span></div>
                 <div class="likert-scale">
                     <div class="option"><label><input type="radio" name="q6_5" value="1" required> 1. 매우 그렇다</label></div>
                     <div class="option"><label><input type="radio" name="q6_5" value="2"> 2. 그렇다</label></div>
@@ -489,9 +428,9 @@
             <div class="section-header">광고 태도</div>
 
             <div class="question">
-                <div class="question-title">7. 앞의 영상을 보고 중간 광고에 대해 떠오른 생각에 맞게 답해주십시오. <span class="required">*</span></div>
+                <div class="question-title">7. 앞의 영상을 보고 중간 광고에 대해 떠오른 생각에 맞게 답해주십시오.</div>
                 <div class="question-note">
-                    김희동, 염동섭. (2022). 유튜브 프리롤 광고의 스킵타입에 관한 연구: 유튜브 이용 동기 이용강도의 차이를 중심으로. 한국콘텐츠학회논문지, 22(8), 106-114.에 사용된 광고 긍정적 태도 문항을 수정하여 사용함.
+                    *김화동, 염동섭. (2022). 유튜브 프리롤 광고의 수용태도에 관한 연구: 유튜브 이용 동기 및 이용강도의 차이를 중심으로. 한국콘텐츠학회논문지, 22(8), 106-114.에 사용된 광고 긍정적 태도 문항을 수정하여 사용함.
                 </div>
             </div>
 
@@ -535,9 +474,9 @@
             <div class="section-header">브랜드 태도</div>
 
             <div class="question">
-                <div class="question-title">8. 앞의 영상을 보고 중간 광고에 대해 떠오른 생각에 맞게 답해주십시오. <span class="required">*</span></div>
+                <div class="question-title">8. 앞의 영상을 보고 중간 광고에 대해 떠오른 생각에 맞게 답해주십시오.</div>
                 <div class="question-note">
-                    차현진. (2024). 스포츠 브랜드 광고 유형 및 제품유형이 스포츠브랜드 이미지, 브랜드태도와 구매의도에 미치는 영향 : Z세대 소비자를 중심으로 (석사학위논문, 연세대학교). 에 사용된 광고 긍정적 태도 문항을 수정하여 사용함.
+                    *지인태. (2024). 스포츠 브랜드 광고 유형 및 제품유형이 스포츠브랜드 이미지, 브랜드태도와 구매의도에 미치는 영향 : Z세대 소비자를 중심으로 [석사학위논문, 연세대학교].에 사용된 광고 긍정적 태도 문항을 수정하여 사용함.
                 </div>
             </div>
 
@@ -567,7 +506,7 @@
 
             <!-- 질문 8-3 -->
             <div class="question">
-                <div class="question-title">8-3. 중간 광고에서 나온 브랜드 제품은 좋다. <span class="required">*</span></div>
+                <div class="question-title">8-3. 중간 광고에서 나온 브랜드 제품이 마음에 든다. <span class="required">*</span></div>
                 <div class="likert-scale">
                     <div class="option"><label><input type="radio" name="q8_3" value="1" required> 1. 매우 그렇다</label></div>
                     <div class="option"><label><input type="radio" name="q8_3" value="2"> 2. 그렇다</label></div>
@@ -577,15 +516,13 @@
                 </div>
             </div>
 
-            <!-- 질문 8-4 -->
+            <!-- ========== 개인정보 질문 ========== -->
+            <div class="section-header">개인정보 질문</div>
+
             <div class="question">
-                <div class="question-title">8-4. 중간 광고에서 나온 브랜드 제품은 긍정적이다. <span class="required">*</span></div>
-                <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q8_4" value="1" required> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q8_4" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q8_4" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q8_4" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q8_4" value="5"> 5. 전혀 그렇지 않다</label></div>
+                <div class="question-title">9. 끝으로 귀하의 전화번호를 적어주십시오. 설문 참여에 대한 기프티콘 추첨 목적 이외의 다른 용도로는 절대 사용되지 않으며, 추첨 이후 모두 폐기하오니 안심하시고 답변해주시면 감사하겠습니다. <span class="required">*</span></div>
+                <div class="options">
+                    <label>( <input type="tel" name="q9" placeholder="010-1234-5678" required> )</label>
                 </div>
             </div>
             
@@ -599,12 +536,9 @@
             MAX_PARTICIPANTS: 40,
             GROUP_SIZE: 20,
             
-            // 통제요인 영상 (모두에게 동일)
-            CONTROL_VIDEO: "여기에_통제요인_영상ID",
-            
             // 실험 영상 (A/B 그룹별로 다름)
-            VIDEO_A: "여기에_그룹A_영상ID",
-            VIDEO_B: "여기에_그룹B_영상ID",
+            VIDEO_A: "여기에_그룹A_영상ID",  // 예: "dQw4w9WgXcQ"
+            VIDEO_B: "여기에_그룹B_영상ID",  // 예: "jNQXAC9IVRw"
         };
         
         // ========== 그룹 배정 (제출 시에만 카운트) ==========
@@ -651,18 +585,7 @@
         }
         
         // ========== 영상 삽입 ==========
-        function insertVideos(group) {
-            // 통제요인 영상 (모두 동일)
-            const controlVideoContainer = document.getElementById('videoContainer');
-            controlVideoContainer.innerHTML = `
-                <iframe 
-                    src="https://www.youtube.com/embed/${CONFIG.CONTROL_VIDEO}" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
-            `;
-            
-            // 실험 영상 (A/B 그룹별로 다름)
+        function insertVideo(group) {
             const videoId = group === 'A' ? CONFIG.VIDEO_A : CONFIG.VIDEO_B;
             const experimentVideoContainer = document.getElementById('experimentVideoContainer');
             experimentVideoContainer.innerHTML = `
@@ -707,8 +630,8 @@
             
             console.log('제출된 데이터:', data);
             
-            alert('설문에 참여해 주셔서 감사합니다!');
-            form.innerHTML = '<p style="text-align:center; font-size:18px; padding:50px;">설문이 제출되었습니다.<br>참여해 주셔서 감사합니다!</p>';
+            alert('설문에 응해주셔서 감사합니다.');
+            form.innerHTML = '<p style="text-align:center; font-size:18px; padding:50px;"><strong>설문에 응해주셔서 감사합니다.</strong></p>';
         });
         
         // ========== CSV 다운로드 함수 ==========
@@ -777,7 +700,7 @@
         window.addEventListener('load', function() {
             tempGroup = assignTempGroup();
             if (tempGroup) {
-                insertVideos(tempGroup);
+                insertVideo(tempGroup);
             }
         });
     </script>
