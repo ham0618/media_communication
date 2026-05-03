@@ -3,706 +3,508 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>유튜브 중간광고 이용 태도에 관한 조사</title>
+    <title>브랜드 태도 설문조사</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Malgun Gothic', sans-serif;
             background-color: #f5f5f5;
             padding: 20px;
-            line-height: 1.8;
+            line-height: 1.6;
         }
-        
+
         .container {
             max-width: 800px;
             margin: 0 auto;
-            background: white;
+            background-color: white;
             padding: 40px;
-            border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-        
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 24px;
-            border-bottom: 2px solid #333;
-            padding-bottom: 15px;
-        }
-        
-        .intro {
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        .intro p {
-            margin-bottom: 15px;
-            text-align: justify;
-        }
-        
-        .contact {
-            margin: 20px 0;
-            padding: 15px;
-            background-color: #f9f9f9;
-            border-left: 3px solid #666;
-        }
-        
-        .section-header {
-            background-color: #5a5a5a;
+
+        .header {
+            background-color: #666;
             color: white;
-            padding: 15px;
-            text-align: center;
-            font-size: 18px;
-            font-weight: bold;
-            margin: 40px 0 20px 0;
-            border-radius: 4px;
-        }
-        
-        .question {
-            margin: 30px 0;
             padding: 20px;
-            background-color: #fafafa;
-            border-radius: 4px;
+            text-align: center;
+            margin: -40px -40px 30px -40px;
+            font-size: 24px;
+            font-weight: bold;
         }
-        
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .question {
+            margin-bottom: 30px;
+        }
+
         .question-title {
             font-weight: bold;
             margin-bottom: 15px;
             font-size: 16px;
-            line-height: 1.6;
         }
-        
-        .question-note {
-            font-size: 13px;
-            color: #666;
-            margin-top: 10px;
-            font-style: italic;
-            line-height: 1.5;
-        }
-        
-        .required {
-            color: red;
-        }
-        
+
         .options {
             margin-left: 20px;
         }
-        
+
         .option {
-            margin: 10px 0;
+            margin-bottom: 10px;
         }
-        
-        input[type="radio"], input[type="checkbox"] {
+
+        .option input[type="radio"] {
             margin-right: 10px;
         }
-        
-        input[type="text"], input[type="number"], input[type="tel"] {
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-        
-        input[type="number"], input[type="tel"] {
-            width: 200px;
-        }
-        
-        .video-section {
-            margin: 40px 0;
-            padding: 30px;
-            background-color: #5a5a5a;
-            color: white;
-            text-align: center;
-            border-radius: 4px;
-        }
-        
-        .video-section h2 {
-            margin-bottom: 20px;
-            font-size: 18px;
-        }
-        
-        .video-container {
-            margin: 20px auto;
-            max-width: 640px;
-        }
-        
-        .video-container iframe {
-            width: 100%;
-            height: 360px;
-            border: none;
-            border-radius: 4px;
-        }
-        
-        .likert-scale {
-            margin-left: 20px;
-        }
-        
-        .likert-scale .option {
-            margin: 8px 0;
-        }
-        
-        .submit-btn {
-            display: block;
-            width: 100%;
-            max-width: 300px;
-            margin: 40px auto;
+
+        .reference {
+            background-color: #f9f9f9;
             padding: 15px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 18px;
-            cursor: pointer;
+            margin-top: 10px;
+            font-size: 13px;
+            color: #555;
+            border-left: 3px solid #666;
+        }
+
+        .video-container {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .video-container video {
+            max-width: 100%;
+            width: 640px;
+            height: auto;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .video-instruction {
+            background-color: #fff3cd;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ffc107;
             font-weight: bold;
         }
-        
-        .submit-btn:hover {
-            background-color: #45a049;
-        }
-        
-        .group-info {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            background: #333;
-            color: white;
-            padding: 10px;
-            border-radius: 4px;
-            font-size: 12px;
-            z-index: 1000;
-        }
 
-        .admin-panel {
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            background: white;
-            border: 2px solid #333;
-            padding: 15px;
-            border-radius: 4px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            z-index: 1000;
-        }
-
-        .admin-panel button {
-            display: block;
-            width: 100%;
-            margin: 5px 0;
-            padding: 8px;
-            background: #333;
+        button {
+            background-color: #666;
             color: white;
+            padding: 15px 40px;
             border: none;
-            border-radius: 4px;
+            border-radius: 5px;
+            font-size: 16px;
             cursor: pointer;
-            font-size: 12px;
+            display: block;
+            margin: 30px auto;
         }
 
-        .admin-panel button:hover {
-            background: #555;
+        button:hover {
+            background-color: #555;
+        }
+
+        /* 관리자 패널 스타일 */
+        #admin-panel {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            max-width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            border-radius: 10px;
+        }
+
+        #admin-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+
+        .admin-header {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            margin: -30px -30px 20px -30px;
+            font-size: 20px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-btn {
+            background-color: #dc3545;
+            padding: 5px 15px;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .admin-stats {
+            margin-bottom: 20px;
+        }
+
+        .stat-item {
+            padding: 10px;
+            background-color: #f8f9fa;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #666;
+            color: white;
+        }
+
+        .reset-btn {
+            background-color: #dc3545;
+            margin-top: 20px;
+        }
+
+        .export-btn {
+            background-color: #28a745;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="group-info" id="groupInfo">그룹: 미배정 (제출 시 카운트)</div>
-    
-    <!-- 관리자 패널 -->
-    <div class="admin-panel">
-        <strong style="display: block; margin-bottom: 10px;">관리자 패널</strong>
-        <button onclick="viewResponsesInConsole()">응답 보기 (콘솔)</button>
-        <button onclick="downloadCSV()">CSV 다운로드</button>
-        <button onclick="resetSurvey()">데이터 초기화</button>
-    </div>
-    
     <div class="container">
-        <h1>유튜브 중간광고 이용 태도에 관한 조사</h1>
-        
-        <div class="intro">
-            <p><strong>안녕하십니까?</strong></p>
-            
-            <p>저희는 부산대학교 미디어커뮤니케이션학과에서 커뮤니케이션기초통계 수업을 수강 중인 강민주, 안혜림, 임유진입니다.</p>
-            
-            <p>저희는 유튜브 중간 광고가 시청자들에게 어떤 브랜드 태도를 지니게 하는지 알아보고자 본 조사를 실시하고 있습니다.</p>
-            
-            <p>이번 조사는 커뮤니케이션기초통계 수업 과제의 일환으로 시행되고 있습니다.<br>
-            선생님의 의견은 유튜브 광고 이용 편의성을 위한 소중한 자료로 활용될 것입니다.<br>
-            본 설문 조사에 응하는 데 걸리는 시간은 약 10분 내외로, 잠시만 시간을 내셔서 설문에 응해 주시면 감사하겠습니다.</p>
-            
-            <p><strong>끝으로, 모든 자료는 익명으로 처리되며, 통계를 내기 위한 목적 이외에는 사용되는 일이 없다는 점을 말씀드립니다.</strong></p>
-            
-            <div class="contact">
-                • 연락처: 강민주 (010-7734-7214) / 안혜림 (010-7540-8526) / 임유진 (010-7925-5869)
+        <div class="header">브랜드 태도</div>
+
+        <!-- 브랜드 태도 섹션 -->
+        <div class="section">
+            <div class="question">
+                <div class="question-title">8. 앞의 영상을 보고 중간 광고에 대해 떠오른 생각에 맞게 답해주십시오.</div>
+                <div class="reference">
+                    자넨티, (2024). 스포츠 브랜드 광고 유형 및 제품유형이 스포츠브랜드 이미지, 브랜드태도와 구매의도에 미치는 영향 : Z세대 소비자를 중심으로 [석사학위논문, 연세대학교]. 에 사용된 참고 공정석 태도 문항을 수정하여 사용함.
+                </div>
+
+                <div class="question" style="margin-top: 20px;">
+                    <div class="question-title">8-1. 나는 중간 광고에서 나온 브랜드 제품에 대해 호의적이다.</div>
+                    <div class="options">
+                        <div class="option"><input type="radio" name="q8_1" value="1"> 1. 매우 그렇다.</div>
+                        <div class="option"><input type="radio" name="q8_1" value="2"> 2. 그렇다.</div>
+                        <div class="option"><input type="radio" name="q8_1" value="3"> 3. 보통이다.</div>
+                        <div class="option"><input type="radio" name="q8_1" value="4"> 4. 그렇지 않다.</div>
+                        <div class="option"><input type="radio" name="q8_1" value="5"> 5. 전혀 그렇지 않다.</div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <div class="question-title">8-2. 중간 광고에서 나온 브랜드 제품은 바람직하지 않다.</div>
+                    <div class="options">
+                        <div class="option"><input type="radio" name="q8_2" value="1"> 1. 매우 그렇다.</div>
+                        <div class="option"><input type="radio" name="q8_2" value="2"> 2. 그렇다.</div>
+                        <div class="option"><input type="radio" name="q8_2" value="3"> 3. 보통이다.</div>
+                        <div class="option"><input type="radio" name="q8_2" value="4"> 4. 그렇지 않다.</div>
+                        <div class="option"><input type="radio" name="q8_2" value="5"> 5. 전혀 그렇지 않다.</div>
+                    </div>
+                </div>
             </div>
         </div>
-        
-        <form id="surveyForm">
-            <!-- 질문 1: 성별 -->
-            <div class="question">
-                <div class="question-title">1. 귀하의 성별은 어떻게 되십니까? <span class="required">*</span></div>
-                <div class="options">
-                    <div class="option">
-                        <label><input type="radio" name="q1" value="남성" required> 1. 남성</label>
-                    </div>
-                    <div class="option">
-                        <label><input type="radio" name="q1" value="여성"> 2. 여성</label>
-                    </div>
-                </div>
+
+        <!-- A/B 집단 실험 섹션 -->
+        <div class="section">
+            <div class="header">A,B 집단으로 나누어 실험</div>
+            
+            <div class="video-instruction">
+                다음 설문에 응답하기 위해 아래 3분 이내 길이의 영상을 스킵하지 말고 끝까지 시청해주시길 부탁드립니다.
             </div>
-            
-            <!-- 질문 2: 나이 -->
-            <div class="question">
-                <div class="question-title">2. 귀하는 몇년생이십니까? <span class="required">*</span></div>
-                <div class="options">
-                    <label>( <input type="number" name="q2" min="1900" max="2026" placeholder="예: 2000" required> ) 년생</label>
+
+            <!-- 영상 삽입 영역 -->
+            <div class="video-container" id="video-section">
+                <!-- A그룹 영상 (기본값) -->
+                <div id="video-a">
+                    <h3 style="margin-bottom: 15px;">( 영상 A )</h3>
+                    <video controls controlsList="nodownload">
+                        <source src="video-a.mp4" type="video/mp4">
+                        귀하의 브라우저는 비디오 태그를 지원하지 않습니다.
+                    </video>
                 </div>
-            </div>
-            
-            <!-- 통제요인 설문 섹션 -->
-            <div class="section-header">통제요인 설문</div>
-            
-            <!-- 질문 3: 유튜브 프리미엄 -->
-            <div class="question">
-                <div class="question-title">3. 현재 유튜브 프리미엄(유튜브 광고가 제거되는 유료 요금제)을 사용하고 계시거나 사용해본 경험이 있으십니까? <span class="required">*</span></div>
-                <div class="options">
-                    <div class="option">
-                        <label><input type="radio" name="q3" value="네" required> 1. 네</label>
-                    </div>
-                    <div class="option">
-                        <label><input type="radio" name="q3" value="아니오"> 2. 아니오</label>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 질문 4-1: 모나미 인지 -->
-            <div class="question">
-                <div class="question-title">4-1. 필기구 브랜드 '모나미(monami)'를 알고 계십니까? <span class="required">*</span></div>
-                <div class="question-note">
-                    *지인태. (2024). 스포츠 브랜드 광고 유형 및 제품유형이 스포츠브랜드 이미지, 브랜드태도와 구매의도에 미치는 영향 : Z세대 소비자를 중심으로 [석사학위논문, 연세대학교].에 사용된 광고 긍정적 태도 문항을 수정하여 사용함.
-                </div>
-                <div class="options">
-                    <div class="option">
-                        <label><input type="radio" name="q4_1" value="네" required> 1. 네</label>
-                    </div>
-                    <div class="option">
-                        <label><input type="radio" name="q4_1" value="아니오"> 2. 아니오</label>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 질문 4-2 -->
-            <div class="question">
-                <div class="question-title">4-2. 나는 모나미 제품에 대해 호의적이다. <span class="required">*</span></div>
-                <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q4_2" value="1" required> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q4_2" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q4_2" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q4_2" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q4_2" value="5"> 5. 전혀 그렇지 않다</label></div>
-                </div>
-            </div>
-            
-            <!-- 질문 4-3 -->
-            <div class="question">
-                <div class="question-title">4-3. 모나미 제품은 바람직하지 않다. <span class="required">*</span></div>
-                <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q4_3" value="1" required> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q4_3" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q4_3" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q4_3" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q4_3" value="5"> 5. 전혀 그렇지 않다</label></div>
-                </div>
-            </div>
-            
-            <!-- 질문 4-4 -->
-            <div class="question">
-                <div class="question-title">4-4. 모나미 제품이 마음에 든다. <span class="required">*</span></div>
-                <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q4_4" value="1" required> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q4_4" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q4_4" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q4_4" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q4_4" value="5"> 5. 전혀 그렇지 않다</label></div>
+
+                <!-- B그룹 영상 (숨김) -->
+                <div id="video-b" style="display: none;">
+                    <h3 style="margin-bottom: 15px;">( 영상 B )</h3>
+                    <video controls controlsList="nodownload">
+                        <source src="video-b.mp4" type="video/mp4">
+                        귀하의 브라우저는 비디오 태그를 지원하지 않습니다.
+                    </video>
                 </div>
             </div>
 
-            <!-- ========== A/B 집단 실험 영상 ========== -->
-            <div class="section-header">A, B 집단으로 나누어 실험</div>
-            
-            <div class="video-section">
-                <h2>다음 설문에 응답하기 위해 아래 3분 이내 길이의 영상을 스킵하지 말고 끝까지 시청해주시길 부탁드립니다.</h2>
-                
-                <div class="video-container" id="experimentVideoContainer">
-                    <!-- JavaScript로 동적 삽입 (A/B 그룹별 다른 영상) -->
-                </div>
-            </div>
-
-            <!-- 질문 5: 영상 시청 확인 -->
             <div class="question">
-                <div class="question-title">5. 영상을 스킵하지 않고 끝까지 시청하셨습니까? <span class="required">*</span></div>
+                <div class="question-title">5. 영상을 스킵하지 않고 끝까지 시청하셨습니까?</div>
                 <div class="options">
-                    <div class="option">
-                        <label><input type="radio" name="q5" value="네" required> 1. 네</label>
-                    </div>
-                    <div class="option">
-                        <label><input type="radio" name="q5" value="아니오"> 2. 아니오</label>
-                    </div>
+                    <div class="option"><input type="radio" name="q5" value="1"> 1. 네</div>
+                    <div class="option"><input type="radio" name="q5" value="2"> 2. 아니오</div>
                 </div>
             </div>
+        </div>
 
-            <!-- ========== 침입성 지각 정도 ========== -->
-            <div class="section-header">침입성 지각 정도</div>
+        <!-- 침입성 지각 정도 섹션 -->
+        <div class="section">
+            <div class="header">침입성 지각 정도</div>
 
             <div class="question">
                 <div class="question-title">6. 앞의 영상을 보고 중간 광고에 대해 떠오른 생각에 맞게 답해주십시오.</div>
-                <div class="question-note">
-                    *양윤직, 조창환. (2012). 광고 매체별 광고회피 수준과 요인에 관한 연구. 광고연구,(92), 355-381.에 사용된 지각된 침입성 문항을 수정 및 축소하여 활용함.
+                <div class="reference">
+                    "양종직, 조창환. (2012). 광고 매체별 광고침입 수준과 오인에 관한 연구. 광고연구,(92), 355-381.에 사용된 자간티 침입성 문항을 수정 및 축소하여 활용함.
+                </div>
+
+                <div class="question" style="margin-top: 20px;">
+                    <div class="question-title">6-1. 앞 영상에서 나온 중간 광고는 시간을 낭비하게 한다.</div>
+                    <div class="options">
+                        <div class="option"><input type="radio" name="q6_1" value="1"> 1. 매우 그렇다.</div>
+                        <div class="option"><input type="radio" name="q6_1" value="2"> 2. 그렇다.</div>
+                        <div class="option"><input type="radio" name="q6_1" value="3"> 3. 보통이다.</div>
+                        <div class="option"><input type="radio" name="q6_1" value="4"> 4. 그렇지 않다.</div>
+                        <div class="option"><input type="radio" name="q6_1" value="5"> 5. 전혀 그렇지 않다.</div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <div class="question-title">6-2. 앞 영상에서 나온 중간 광고는 영상 이용에 방해가 된다.</div>
+                    <div class="options">
+                        <div class="option"><input type="radio" name="q6_2" value="1"> 1. 매우 그렇다.</div>
+                        <div class="option"><input type="radio" name="q6_2" value="2"> 2. 그렇다.</div>
+                        <div class="option"><input type="radio" name="q6_2" value="3"> 3. 보통이다.</div>
+                        <div class="option"><input type="radio" name="q6_2" value="4"> 4. 그렇지 않다.</div>
+                        <div class="option"><input type="radio" name="q6_2" value="5"> 5. 전혀 그렇지 않다.</div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <div class="question-title">6-3. 앞 영상에서 나온 중간 광고는 강제적이고 거슬린다.</div>
+                    <div class="options">
+                        <div class="option"><input type="radio" name="q6_3" value="1"> 1. 매우 그렇다.</div>
+                        <div class="option"><input type="radio" name="q6_3" value="2"> 2. 그렇다.</div>
+                        <div class="option"><input type="radio" name="q6_3" value="3"> 3. 보통이다.</div>
+                        <div class="option"><input type="radio" name="q6_3" value="4"> 4. 그렇지 않다.</div>
+                        <div class="option"><input type="radio" name="q6_3" value="5"> 5. 전혀 그렇지 않다.</div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <div class="question-title">6-4. 앞 영상에서 나온 중간 광고는 짜증난다.</div>
+                    <div class="options">
+                        <div class="option"><input type="radio" name="q6_4" value="1"> 1. 매우 그렇다.</div>
+                        <div class="option"><input type="radio" name="q6_4" value="2"> 2. 그렇다.</div>
+                        <div class="option"><input type="radio" name="q6_4" value="3"> 3. 보통이다.</div>
+                        <div class="option"><input type="radio" name="q6_4" value="4"> 4. 그렇지 않다.</div>
+                        <div class="option"><input type="radio" name="q6_4" value="5"> 5. 전혀 그렇지 않다.</div>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <!-- 질문 6-1 -->
-            <div class="question">
-                <div class="question-title">6-1. 앞 영상에서 나온 중간 광고는 시간을 낭비하게 한다. <span class="required">*</span></div>
-                <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q6_1" value="1" required> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_1" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_1" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_1" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_1" value="5"> 5. 전혀 그렇지 않다</label></div>
-                </div>
+        <button onclick="submitSurvey()">제출하기</button>
+    </div>
+
+    <!-- 관리자 패널 오버레이 -->
+    <div id="admin-overlay" onclick="closeAdminPanel()"></div>
+
+    <!-- 관리자 패널 -->
+    <div id="admin-panel">
+        <div class="admin-header">
+            <span>📊 관리자 패널</span>
+            <button class="close-btn" onclick="closeAdminPanel()">닫기</button>
+        </div>
+
+        <div class="admin-stats">
+            <div class="stat-item">
+                <strong>총 응답 수:</strong> <span id="total-responses">0</span>
             </div>
-
-            <!-- 질문 6-2 -->
-            <div class="question">
-                <div class="question-title">6-2. 앞 영상에서 나온 중간 광고는 영상 이용에 방해가 된다. <span class="required">*</span></div>
-                <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q6_2" value="1" required> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_2" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_2" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_2" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_2" value="5"> 5. 전혀 그렇지 않다</label></div>
-                </div>
+            <div class="stat-item">
+                <strong>A그룹 응답:</strong> <span id="group-a-count">0</span>
             </div>
-
-            <!-- 질문 6-3 -->
-            <div class="question">
-                <div class="question-title">6-3. 앞 영상에서 나온 중간 광고는 강제적이고 거슬린다. <span class="required">*</span></div>
-                <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q6_3" value="1" required> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_3" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_3" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_3" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_3" value="5"> 5. 전혀 그렇지 않다</label></div>
-                </div>
+            <div class="stat-item">
+                <strong>B그룹 응답:</strong> <span id="group-b-count">0</span>
             </div>
+        </div>
 
-            <!-- 질문 6-4 -->
-            <div class="question">
-                <div class="question-title">6-4. 앞 영상에서 나온 중간 광고는 짜증난다. <span class="required">*</span></div>
-                <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q6_4" value="1" required> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_4" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_4" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_4" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_4" value="5"> 5. 전혀 그렇지 않다</label></div>
-                </div>
-            </div>
+        <h3>응답 데이터</h3>
+        <div id="responses-table"></div>
 
-            <!-- 질문 6-5 -->
-            <div class="question">
-                <div class="question-title">6-5. 앞 영상에서 나온 중간 광고는 과도하게 길다고 생각한다. <span class="required">*</span></div>
-                <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q6_5" value="1" required> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_5" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_5" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_5" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_5" value="5"> 5. 전혀 그렇지 않다</label></div>
-                </div>
-            </div>
-
-            <!-- ========== 광고 태도 ========== -->
-            <div class="section-header">광고 태도</div>
-
-            <div class="question">
-                <div class="question-title">7. 앞의 영상을 보고 중간 광고에 대해 떠오른 생각에 맞게 답해주십시오.</div>
-                <div class="question-note">
-                    *김화동, 염동섭. (2022). 유튜브 프리롤 광고의 수용태도에 관한 연구: 유튜브 이용 동기 및 이용강도의 차이를 중심으로. 한국콘텐츠학회논문지, 22(8), 106-114.에 사용된 광고 긍정적 태도 문항을 수정하여 사용함.
-                </div>
-            </div>
-
-            <!-- 질문 7-1 -->
-            <div class="question">
-                <div class="question-title">7-1. 앞 영상에서 나온 중간 광고는 흥미 있고 재미있다. <span class="required">*</span></div>
-                <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q7_1" value="1" required> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q7_1" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q7_1" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q7_1" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q7_1" value="5"> 5. 전혀 그렇지 않다</label></div>
-                </div>
-            </div>
-
-            <!-- 질문 7-2 -->
-            <div class="question">
-                <div class="question-title">7-2. 앞 영상에서 나온 중간 광고를 보는 것이 유쾌하지 않고 지루하다. <span class="required">*</span></div>
-                <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q7_2" value="1" required> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q7_2" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q7_2" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q7_2" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q7_2" value="5"> 5. 전혀 그렇지 않다</label></div>
-                </div>
-            </div>
-
-            <!-- 질문 7-3 -->
-            <div class="question">
-                <div class="question-title">7-3. 앞 영상에서 나온 중간 광고를 통해 얻은 정보가 유용하다. <span class="required">*</span></div>
-                <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q7_3" value="1" required> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q7_3" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q7_3" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q7_3" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q7_3" value="5"> 5. 전혀 그렇지 않다</label></div>
-                </div>
-            </div>
-
-            <!-- ========== 브랜드 태도 ========== -->
-            <div class="section-header">브랜드 태도</div>
-
-            <div class="question">
-                <div class="question-title">8. 앞의 영상을 보고 중간 광고에 대해 떠오른 생각에 맞게 답해주십시오.</div>
-                <div class="question-note">
-                    *지인태. (2024). 스포츠 브랜드 광고 유형 및 제품유형이 스포츠브랜드 이미지, 브랜드태도와 구매의도에 미치는 영향 : Z세대 소비자를 중심으로 [석사학위논문, 연세대학교].에 사용된 광고 긍정적 태도 문항을 수정하여 사용함.
-                </div>
-            </div>
-
-            <!-- 질문 8-1 -->
-            <div class="question">
-                <div class="question-title">8-1. 나는 중간 광고에서 나온 브랜드 제품에 대해 호의적이다. <span class="required">*</span></div>
-                <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q8_1" value="1" required> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q8_1" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q8_1" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q8_1" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q8_1" value="5"> 5. 전혀 그렇지 않다</label></div>
-                </div>
-            </div>
-
-            <!-- 질문 8-2 -->
-            <div class="question">
-                <div class="question-title">8-2. 중간 광고에서 나온 브랜드 제품은 바람직하지 않다. <span class="required">*</span></div>
-                <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q8_2" value="1" required> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q8_2" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q8_2" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q8_2" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q8_2" value="5"> 5. 전혀 그렇지 않다</label></div>
-                </div>
-            </div>
-
-            <!-- 질문 8-3 -->
-            <div class="question">
-                <div class="question-title">8-3. 중간 광고에서 나온 브랜드 제품이 마음에 든다. <span class="required">*</span></div>
-                <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q8_3" value="1" required> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q8_3" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q8_3" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q8_3" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q8_3" value="5"> 5. 전혀 그렇지 않다</label></div>
-                </div>
-            </div>
-
-            <!-- ========== 개인정보 질문 ========== -->
-            <div class="section-header">개인정보 질문</div>
-
-            <div class="question">
-                <div class="question-title">9. 끝으로 귀하의 전화번호를 적어주십시오. 설문 참여에 대한 기프티콘 추첨 목적 이외의 다른 용도로는 절대 사용되지 않으며, 추첨 이후 모두 폐기하오니 안심하시고 답변해주시면 감사하겠습니다. <span class="required">*</span></div>
-                <div class="options">
-                    <label>( <input type="tel" name="q9" placeholder="010-1234-5678" required> )</label>
-                </div>
-            </div>
-            
-            <button type="submit" class="submit-btn">제출하기</button>
-        </form>
+        <button class="export-btn" onclick="exportToCSV()">📥 CSV로 내보내기</button>
+        <button class="reset-btn" onclick="resetData()">🗑️ 모든 데이터 초기화</button>
     </div>
 
     <script>
-        // ========== 설정 영역 ==========
-        const CONFIG = {
-            MAX_PARTICIPANTS: 40,
-            GROUP_SIZE: 20,
-            
-            // 실험 영상 (A/B 그룹별로 다름)
-            VIDEO_A: "여기에_그룹A_영상ID",  // 예: "dQw4w9WgXcQ"
-            VIDEO_B: "여기에_그룹B_영상ID",  // 예: "jNQXAC9IVRw"
-        };
+        // A/B 그룹 랜덤 배정
+        let userGroup = Math.random() < 0.5 ? 'A' : 'B';
         
-        // ========== 그룹 배정 (제출 시에만 카운트) ==========
-        let assignedGroup = null;
-        let tempGroup = null; // 임시 그룹 (제출 전)
-        
-        function assignTempGroup() {
-            const countA = parseInt(localStorage.getItem('surveyCountA') || '0');
-            const countB = parseInt(localStorage.getItem('surveyCountB') || '0');
-            const totalCount = countA + countB;
-            
-            if (totalCount >= CONFIG.MAX_PARTICIPANTS) {
-                alert('참여 인원이 마감되었습니다. 감사합니다.');
-                document.getElementById('surveyForm').innerHTML = '<p style="text-align:center; font-size:18px; padding:50px;">참여 인원이 마감되었습니다.</p>';
-                return null;
-            }
-            
-            let group;
-            if (countA < CONFIG.GROUP_SIZE && countB < CONFIG.GROUP_SIZE) {
-                group = Math.random() < 0.5 ? 'A' : 'B';
-            } else if (countA < CONFIG.GROUP_SIZE) {
-                group = 'A';
-            } else {
-                group = 'B';
-            }
-            
-            return group;
+        // 그룹에 따라 영상 표시
+        if (userGroup === 'A') {
+            document.getElementById('video-a').style.display = 'block';
+            document.getElementById('video-b').style.display = 'none';
+        } else {
+            document.getElementById('video-a').style.display = 'none';
+            document.getElementById('video-b').style.display = 'block';
         }
-        
-        function confirmGroupAssignment(group) {
-            // 제출 시 실제 카운트 증가
-            let countA = parseInt(localStorage.getItem('surveyCountA') || '0');
-            let countB = parseInt(localStorage.getItem('surveyCountB') || '0');
-            
-            if (group === 'A') {
-                countA++;
-                localStorage.setItem('surveyCountA', countA);
-            } else {
-                countB++;
-                localStorage.setItem('surveyCountB', countB);
-            }
-            
-            return group;
+
+        // 로컬 스토리지에서 응답 데이터 불러오기
+        function getResponses() {
+            const data = localStorage.getItem('surveyResponses');
+            return data ? JSON.parse(data) : [];
         }
-        
-        // ========== 영상 삽입 ==========
-        function insertVideo(group) {
-            const videoId = group === 'A' ? CONFIG.VIDEO_A : CONFIG.VIDEO_B;
-            const experimentVideoContainer = document.getElementById('experimentVideoContainer');
-            experimentVideoContainer.innerHTML = `
-                <iframe 
-                    src="https://www.youtube.com/embed/${videoId}" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
-            `;
-            
-            // 그룹 정보 표시 (제출 전이므로 카운트 안 함)
-            const countA = parseInt(localStorage.getItem('surveyCountA') || '0');
-            const countB = parseInt(localStorage.getItem('surveyCountB') || '0');
-            document.getElementById('groupInfo').textContent = `그룹 ${group} (제출 시 카운트 | 현재 A: ${countA}/20, B: ${countB}/20)`;
-        }
-        
-        // ========== 폼 제출 처리 ==========
-        document.getElementById('surveyForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const form = e.target;
-            const formData = new FormData(form);
-            
-            // 제출 시 그룹 확정 및 카운트
-            assignedGroup = confirmGroupAssignment(tempGroup);
-            
-            // 데이터 객체 생성
-            const data = {
-                timestamp: new Date().toISOString(),
-                group: assignedGroup,
-            };
-            
-            // FormData를 객체로 변환
-            for (let [key, value] of formData.entries()) {
-                data[key] = value;
-            }
-            
-            // 로컬 스토리지에 저장
-            const responses = JSON.parse(localStorage.getItem('surveyResponses') || '[]');
-            responses.push(data);
+
+        // 응답 데이터 저장
+        function saveResponse(response) {
+            const responses = getResponses();
+            responses.push(response);
             localStorage.setItem('surveyResponses', JSON.stringify(responses));
-            
-            console.log('제출된 데이터:', data);
-            
-            alert('설문에 응해주셔서 감사합니다.');
-            form.innerHTML = '<p style="text-align:center; font-size:18px; padding:50px;"><strong>설문에 응해주셔서 감사합니다.</strong></p>';
-        });
-        
-        // ========== CSV 다운로드 함수 ==========
-        function downloadCSV() {
-            const responses = JSON.parse(localStorage.getItem('surveyResponses') || '[]');
-            
-            if (responses.length === 0) {
-                alert('아직 응답이 없습니다.');
+        }
+
+        // 설문 제출
+        function submitSurvey() {
+            const response = {
+                timestamp: new Date().toISOString(),
+                group: userGroup,
+                q8_1: document.querySelector('input[name="q8_1"]:checked')?.value,
+                q8_2: document.querySelector('input[name="q8_2"]:checked')?.value,
+                q5: document.querySelector('input[name="q5"]:checked')?.value,
+                q6_1: document.querySelector('input[name="q6_1"]:checked')?.value,
+                q6_2: document.querySelector('input[name="q6_2"]:checked')?.value,
+                q6_3: document.querySelector('input[name="q6_3"]:checked')?.value,
+                q6_4: document.querySelector('input[name="q6_4"]:checked')?.value
+            };
+
+            // 필수 항목 체크
+            if (!response.q8_1 || !response.q8_2 || !response.q5 || 
+                !response.q6_1 || !response.q6_2 || !response.q6_3 || !response.q6_4) {
+                alert('모든 문항에 답변해주세요.');
                 return;
             }
+
+            saveResponse(response);
+            alert('설문이 제출되었습니다. 감사합니다!');
             
-            const allKeys = new Set();
-            responses.forEach(response => {
-                Object.keys(response).forEach(key => allKeys.add(key));
-            });
-            const headers = Array.from(allKeys);
+            // 폼 초기화
+            document.querySelectorAll('input[type="radio"]').forEach(input => input.checked = false);
             
-            let csv = headers.join(',') + '\n';
-            
-            responses.forEach(response => {
-                const row = headers.map(header => {
-                    const value = response[header] || '';
-                    if (value.toString().includes(',') || value.toString().includes('"')) {
-                        return '"' + value.toString().replace(/"/g, '""') + '"';
-                    }
-                    return value;
-                });
-                csv += row.join(',') + '\n';
-            });
-            
-            const BOM = '\uFEFF';
-            const blob = new Blob([BOM + csv], { type: 'text/csv;charset=utf-8;' });
-            
-            const link = document.createElement('a');
-            const url = URL.createObjectURL(blob);
-            link.setAttribute('href', url);
-            link.setAttribute('download', `설문결과_${new Date().toISOString().split('T')[0]}.csv`);
-            link.style.visibility = 'hidden';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            alert(`${responses.length}개의 응답이 다운로드되었습니다.`);
-        }
-        
-        function viewResponsesInConsole() {
-            const responses = JSON.parse(localStorage.getItem('surveyResponses') || '[]');
-            console.clear();
-            console.log('=== 설문 응답 데이터 ===');
-            console.log(`총 응답 수: ${responses.length}`);
-            console.table(responses);
-            alert(`콘솔에 ${responses.length}개의 응답이 표시되었습니다. F12를 눌러 확인하세요.`);
-        }
-        
-        function resetSurvey() {
-            if (confirm('정말로 모든 데이터를 초기화하시겠습니까?\n이 작업은 되돌릴 수 없습니다.')) {
-                localStorage.removeItem('surveyCountA');
-                localStorage.removeItem('surveyCountB');
-                localStorage.removeItem('surveyResponses');
-                alert('초기화되었습니다.');
-                location.reload();
+            // 새로운 그룹 배정
+            userGroup = Math.random() < 0.5 ? 'A' : 'B';
+            if (userGroup === 'A') {
+                document.getElementById('video-a').style.display = 'block';
+                document.getElementById('video-b').style.display = 'none';
+            } else {
+                document.getElementById('video-a').style.display = 'none';
+                document.getElementById('video-b').style.display = 'block';
             }
         }
-        
-        // ========== 초기화 ==========
-        window.addEventListener('load', function() {
-            tempGroup = assignTempGroup();
-            if (tempGroup) {
-                insertVideo(tempGroup);
+
+        // 관리자 패널 열기 (Ctrl + Shift + A)
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.shiftKey && e.key === 'A') {
+                e.preventDefault();
+                showAdminPanel();
             }
         });
+
+        function showAdminPanel() {
+            document.getElementById('admin-overlay').style.display = 'block';
+            document.getElementById('admin-panel').style.display = 'block';
+            updateAdminPanel();
+        }
+
+        function closeAdminPanel() {
+            document.getElementById('admin-overlay').style.display = 'none';
+            document.getElementById('admin-panel').style.display = 'none';
+        }
+
+        // 관리자 패널 업데이트
+        function updateAdminPanel() {
+            const responses = getResponses();
+            const groupA = responses.filter(r => r.group === 'A');
+            const groupB = responses.filter(r => r.group === 'B');
+
+            document.getElementById('total-responses').textContent = responses.length;
+            document.getElementById('group-a-count').textContent = groupA.length;
+            document.getElementById('group-b-count').textContent = groupB.length;
+
+            // 테이블 생성
+            let tableHTML = '<table><thead><tr>';
+            tableHTML += '<th>시간</th><th>그룹</th><th>Q8-1</th><th>Q8-2</th><th>Q5</th>';
+            tableHTML += '<th>Q6-1</th><th>Q6-2</th><th>Q6-3</th><th>Q6-4</th>';
+            tableHTML += '</tr></thead><tbody>';
+
+            responses.forEach(r => {
+                const date = new Date(r.timestamp);
+                const timeStr = date.toLocaleString('ko-KR');
+                tableHTML += `<tr>
+                    <td>${timeStr}</td>
+                    <td>${r.group}</td>
+                    <td>${r.q8_1}</td>
+                    <td>${r.q8_2}</td>
+                    <td>${r.q5}</td>
+                    <td>${r.q6_1}</td>
+                    <td>${r.q6_2}</td>
+                    <td>${r.q6_3}</td>
+                    <td>${r.q6_4}</td>
+                </tr>`;
+            });
+
+            tableHTML += '</tbody></table>';
+            document.getElementById('responses-table').innerHTML = tableHTML;
+        }
+
+        // 데이터 초기화
+        function resetData() {
+            if (confirm('정말로 모든 응답 데이터를 삭제하시겠습니까?\n이 작업은 되돌릴 수 없습니다.')) {
+                localStorage.removeItem('surveyResponses');
+                updateAdminPanel();
+                alert('모든 데이터가 삭제되었습니다.');
+            }
+        }
+
+        // CSV 내보내기
+        function exportToCSV() {
+            const responses = getResponses();
+            if (responses.length === 0) {
+                alert('내보낼 데이터가 없습니다.');
+                return;
+            }
+
+            let csv = '시간,그룹,Q8-1,Q8-2,Q5,Q6-1,Q6-2,Q6-3,Q6-4\n';
+            responses.forEach(r => {
+                const date = new Date(r.timestamp);
+                const timeStr = date.toLocaleString('ko-KR');
+                csv += `${timeStr},${r.group},${r.q8_1},${r.q8_2},${r.q5},${r.q6_1},${r.q6_2},${r.q6_3},${r.q6_4}\n`;
+            });
+
+            const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `설문조사_결과_${new Date().toISOString().slice(0,10)}.csv`;
+            link.click();
+        }
     </script>
 </body>
 </html>
