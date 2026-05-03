@@ -217,9 +217,9 @@
 <body>
     <div class="group-info" id="groupInfo">그룹: 미배정 (제출 시 카운트)</div>
     
-    <!-- 관리자 패널 (Ctrl+Shift+A로 토글) -->
+    <!-- 관리자 패널 (Ctrl+Shift+Q로 토글) -->
     <div class="admin-panel" id="adminPanel">
-        <strong style="display: block; margin-bottom: 10px;">관리자 패널 (Ctrl+Shift+A)</strong>
+        <strong style="display: block; margin-bottom: 10px;">관리자 패널 (Ctrl+Shift+Q)</strong>
         <button onclick="viewResponsesInConsole()">응답 보기 (콘솔)</button>
         <button onclick="downloadCSV()">CSV 다운로드</button>
         <button onclick="resetSurvey()">데이터 초기화</button>
@@ -548,10 +548,10 @@
             VIDEO_B: "video_group_B.mp4",  // B그룹 영상 파일명
         };
         
-        // ========== Ctrl+Shift+A로 관리자 패널 토글 ==========
+        // ========== Ctrl+Shift+Q로 관리자 패널 토글 ==========
         document.addEventListener('keydown', function(e) {
-            // Ctrl+Shift+A 감지
-            if (e.ctrlKey && e.shiftKey && e.key === 'A') {
+            // Ctrl+Shift+Q 감지
+            if (e.ctrlKey && e.shiftKey && e.key === 'Q') {
                 e.preventDefault();
                 const panel = document.getElementById('adminPanel');
                 panel.classList.toggle('active');
