@@ -177,6 +177,12 @@
             border-radius: 4px;
             font-size: 12px;
             z-index: 1000;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .group-info:hover {
+            background: #555;
         }
 
         .admin-panel {
@@ -189,7 +195,7 @@
             border-radius: 4px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.2);
             z-index: 1000;
-            display: none; /* 기본적으로 숨김 */
+            display: none;
         }
 
         .admin-panel.active {
@@ -217,9 +223,9 @@
 <body>
     <div class="group-info" id="groupInfo">그룹: 미배정 (제출 시 카운트)</div>
     
-    <!-- 관리자 패널 (Ctrl+Shift+Q로 토글) -->
+    <!-- 관리자 패널 (우측 상단 3번 클릭으로 토글) -->
     <div class="admin-panel" id="adminPanel">
-        <strong style="display: block; margin-bottom: 10px;">관리자 패널 (Ctrl+Shift+Q)</strong>
+        <strong style="display: block; margin-bottom: 10px;">관리자 패널 (우측 상단 3번 클릭)</strong>
         <button onclick="viewResponsesInConsole()">응답 보기 (콘솔)</button>
         <button onclick="downloadCSV()">CSV 다운로드</button>
         <button onclick="resetSurvey()">데이터 초기화</button>
@@ -286,7 +292,7 @@
             
             <!-- 질문 4-1: 모나미 인지 -->
             <div class="question">
-                <div class="question-title">4-1. 필기구 브랜드 '모나미(monami)'를 알고 계십니까? <span class="required">*</span></div>
+                <div class="question-title">4-1. 필기구 브랜드 '스윙쿨(swingcool)'를 알고 계십니까? <span class="required">*</span></div>
                 <div class="question-note">
                     *지인태. (2024). 스포츠 브랜드 광고 유형 및 제품유형이 스포츠브랜드 이미지, 브랜드태도와 구매의도에 미치는 영향 : Z세대 소비자를 중심으로 [석사학위논문, 연세대학교].에 사용된 광고 긍정적 태도 문항을 수정하여 사용함.
                 </div>
@@ -302,7 +308,7 @@
             
             <!-- 질문 4-2 -->
             <div class="question">
-                <div class="question-title">4-2. 나는 모나미 제품에 대해 호의적이다. <span class="required">*</span></div>
+                <div class="question-title">4-2. 나는 스윙쿨 제품에 대해 호의적이다. <span class="required">*</span></div>
                 <div class="likert-scale">
                     <div class="option"><label><input type="radio" name="q4_2" value="1" required> 1. 매우 그렇다</label></div>
                     <div class="option"><label><input type="radio" name="q4_2" value="2"> 2. 그렇다</label></div>
@@ -314,7 +320,7 @@
             
             <!-- 질문 4-3 -->
             <div class="question">
-                <div class="question-title">4-3. 모나미 제품은 바람직하지 않다. <span class="required">*</span></div>
+                <div class="question-title">4-3. 스윙쿨 제품은 바람직하지 않다. <span class="required">*</span></div>
                 <div class="likert-scale">
                     <div class="option"><label><input type="radio" name="q4_3" value="1" required> 1. 매우 그렇다</label></div>
                     <div class="option"><label><input type="radio" name="q4_3" value="2"> 2. 그렇다</label></div>
@@ -326,7 +332,7 @@
             
             <!-- 질문 4-4 -->
             <div class="question">
-                <div class="question-title">4-4. 모나미 제품이 마음에 든다. <span class="required">*</span></div>
+                <div class="question-title">4-4. 스윙쿨 제품이 마음에 든다. <span class="required">*</span></div>
                 <div class="likert-scale">
                     <div class="option"><label><input type="radio" name="q4_4" value="1" required> 1. 매우 그렇다</label></div>
                     <div class="option"><label><input type="radio" name="q4_4" value="2"> 2. 그렇다</label></div>
@@ -543,16 +549,27 @@
             GROUP_SIZE: 20,
             
             // 실험 영상 파일 경로 (A/B 그룹별로 다름)
-            // 영상 파일을 HTML 파일과 같은 폴더에 넣고 파일명만 입력하세요
-            VIDEO_A: "video_group_A.mp4",  // A그룹 영상 파일명
-            VIDEO_B: "video_group_B.mp4",  // B그룹 영상 파일명
+            VIDEO_A: "video_group_A.mp4",
+            VIDEO_B: "video_group_B.mp4",
         };
         
-        // ========== Ctrl+Shift+Q로 관리자 패널 토글 ==========
-        document.addEventListener('keydown', function(e) {
-            // Ctrl+Shift+Q 감지
-            if (e.ctrlKey && e.shiftKey && e.key === 'Q') {
-                e.preventDefault();
+        // ========== 우측 상단 그룹 정보를 3번 연속 클릭하면 관리자 패널 토글 ==========
+        let clickCount = 0;
+        let clickTimer = null;
+
+        document.getElementById('groupInfo').addEventListener('click', function() {
+            clickCount++;
+            
+            if (clickCount === 1) {
+                clickTimer = setTimeout(function() {
+                    clickCount = 0;
+                }, 1000); // 1초 안에 3번 클릭해야 함
+            }
+            
+            if (clickCount === 3) {
+                clearTimeout(clickTimer);
+                clickCount = 0;
+                
                 const panel = document.getElementById('adminPanel');
                 panel.classList.toggle('active');
             }
@@ -560,7 +577,7 @@
         
         // ========== 그룹 배정 (제출 시에만 카운트) ==========
         let assignedGroup = null;
-        let tempGroup = null; // 임시 그룹 (제출 전)
+        let tempGroup = null;
         
         function assignTempGroup() {
             const countA = parseInt(localStorage.getItem('surveyCountA') || '0');
@@ -586,7 +603,6 @@
         }
         
         function confirmGroupAssignment(group) {
-            // 제출 시 실제 카운트 증가
             let countA = parseInt(localStorage.getItem('surveyCountA') || '0');
             let countB = parseInt(localStorage.getItem('surveyCountB') || '0');
             
@@ -601,7 +617,7 @@
             return group;
         }
         
-        // ========== 영상 삽입 (직접 업로드한 파일) ==========
+        // ========== 영상 삽입 ==========
         function insertVideo(group) {
             const videoFile = group === 'A' ? CONFIG.VIDEO_A : CONFIG.VIDEO_B;
             const experimentVideoContainer = document.getElementById('experimentVideoContainer');
@@ -613,7 +629,6 @@
                 </video>
             `;
             
-            // 그룹 정보 표시 (제출 전이므로 카운트 안 함)
             const countA = parseInt(localStorage.getItem('surveyCountA') || '0');
             const countB = parseInt(localStorage.getItem('surveyCountB') || '0');
             document.getElementById('groupInfo').textContent = `그룹 ${group} (제출 시 카운트 | 현재 A: ${countA}/20, B: ${countB}/20)`;
@@ -626,21 +641,17 @@
             const form = e.target;
             const formData = new FormData(form);
             
-            // 제출 시 그룹 확정 및 카운트
             assignedGroup = confirmGroupAssignment(tempGroup);
             
-            // 데이터 객체 생성
             const data = {
                 timestamp: new Date().toISOString(),
                 group: assignedGroup,
             };
             
-            // FormData를 객체로 변환
             for (let [key, value] of formData.entries()) {
                 data[key] = value;
             }
             
-            // 로컬 스토리지에 저장
             const responses = JSON.parse(localStorage.getItem('surveyResponses') || '[]');
             responses.push(data);
             localStorage.setItem('surveyResponses', JSON.stringify(responses));
@@ -651,7 +662,7 @@
             form.innerHTML = '<p style="text-align:center; font-size:18px; padding:50px;"><strong>설문에 응해주셔서 감사합니다.</strong></p>';
         });
         
-        // ========== CSV 다운로드 함수 ==========
+        // ========== CSV 다운로드 ==========
         function downloadCSV() {
             const responses = JSON.parse(localStorage.getItem('surveyResponses') || '[]');
             
