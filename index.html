@@ -232,7 +232,7 @@
     </style>
 </head>
 <body>
-    <div class="group-info" id="groupInfo">그룹: 미배정 (제출 시 카운트)</div>
+    <div class="group-info" id="groupInfo">그룹: 미배정</div>
     
     <div class="admin-panel" id="adminPanel">
         <strong style="display: block; margin-bottom: 10px;">관리자 패널 (우측 상단 3번 클릭)</strong>
@@ -257,10 +257,10 @@
             </div>
         </div>
 
-        <!-- ⭐️ CORS 우회를 위한 보이지 않는 iframe ⭐️ -->
+        <!-- CORS 우회를 위한 보이지 않는 iframe -->
         <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
         
-        <!-- ⭐️ action 주소를 구글 시트 주소로 넣고, target을 위 iframe으로 설정합니다. ⭐️ -->
+        <!-- action 주소를 구글 시트 주소로 넣고, target을 위 iframe으로 설정합니다. -->
         <form id="surveyForm" action="https://script.google.com/macros/s/AKfycbwsFrve4c2jYNkMG6aUsGUelabW-ZHHWdAATfGrmeCv3WY_XBgypJpjThOXuLY3zgSARg/exec" method="POST" target="hidden_iframe">
             
             <!-- 시간과 그룹 정보를 전송하기 위한 숨겨진 인풋 필드 -->
@@ -527,21 +527,19 @@
     </div>
 
     <script>
-        // 4-1번 문항 선택에 따른 4-2, 4-3, 4-4 제어 로직 추가
+        // 4-1번 문항 선택에 따른 4-2, 4-3, 4-4 제어 로직
         document.querySelectorAll('input[name="q4_1"]').forEach(radio => {
             radio.addEventListener('change', function() {
                 const isYes = this.value === '네';
                 
-                // 4-2, 4-3, 4-4 라디오 버튼 제어
                 ['q4_2', 'q4_3', 'q4_4'].forEach(name => {
                     document.querySelectorAll(`input[name="${name}"]`).forEach(input => {
                         input.disabled = !isYes;
                         input.required = isYes;
-                        if (!isYes) input.checked = false; // 아니오 선택 시 기존 체크 해제
+                        if (!isYes) input.checked = false;
                     });
                 });
                 
-                // 필수 표시(*) 제어
                 document.querySelectorAll('.q4-req').forEach(span => {
                     span.style.display = isYes ? 'inline' : 'none';
                 });
@@ -549,12 +547,61 @@
         });
 
         const CONFIG = {
-            MAX_PARTICIPANTS: 40,
-            GROUP_SIZE: 20,
             VIDEO_A: "video_group_A.mp4",
             VIDEO_B: "video_group_B.mp4",
         };
         
+        let tempGroup = null;
+        
+        // 50% 확률로 A 또는 B 그룹 무작위 배정
+        function assignTempGroup() {
+            return Math.random() < 0.5 ? 'A' : 'B';
+        }
+        
+        // 배정된 그룹에 맞게 영상 삽입 및 화면 표시
+        function insertVideo(group) {
+            const videoFile = group === 'A' ? CONFIG.VIDEO_A : CONFIG.VIDEO_B;
+            const container = document.getElementById('experimentVideoContainer');
+            container.innerHTML = `
+                <video controls controlsList="nodownload">
+                    <source src="${videoFile}" type="video/mp4">
+                    귀하의 브라우저는 비디오 태그를 지원하지 않습니다.
+                </video>`;
+            
+            // 화면 우측 상단 표시 (헷갈리는 카운터 숫자 제거)
+            document.getElementById('groupInfo').textContent = `실험 그룹: ${group}`;
+        }
+        
+        // 데이터 전송 우회 및 제출 처리 로직
+        let isFormSubmitted = false;
+
+        document.getElementById('surveyForm').addEventListener('submit', function(e) {
+            // 기본 폼 전송 기능 동작
+            
+            const submitBtn = this.querySelector('.submit-btn');
+            submitBtn.innerText = "데이터 전송 중...";
+            submitBtn.disabled = true;
+
+            // 숨겨진 필드에 시간과 그룹 정보 채워넣기
+            document.getElementById('hidden_timestamp').value = new Date().toISOString();
+            document.getElementById('hidden_group').value = tempGroup; // 배정된 그룹 전송
+            
+            isFormSubmitted = true;
+        });
+
+        // 숨겨진 iframe이 로드되면 전송이 완료된 것으로 판단
+        document.getElementById('hidden_iframe').addEventListener('load', function() {
+            if (isFormSubmitted) {
+                document.getElementById('groupInfo').textContent = `제출이 완료되었습니다.`;
+                
+                alert('설문에 응해주셔서 감사합니다.');
+                document.getElementById('surveyForm').innerHTML = '<p style="text-align:center; font-size:18px; padding:50px;">설문에 응해주셔서 감사합니다.</p>';
+                
+                isFormSubmitted = false; // 상태 초기화
+            }
+        });
+        
+        // 관리자 패널 관련 (우측 상단 3번 클릭)
         let clickCount = 0;
         let clickTimer = null;
 
@@ -569,143 +616,7 @@
                 document.getElementById('adminPanel').classList.toggle('active');
             }
         });
-        
-        let tempGroup = null;
-        
-        function assignTempGroup() {
-            const countA = parseInt(localStorage.getItem('surveyCountA') || '0');
-            const countB = parseInt(localStorage.getItem('surveyCountB') || '0');
-            const totalCount = countA + countB;
-            
-            if (totalCount >= CONFIG.MAX_PARTICIPANTS) {
-                alert('참여 인원이 마감되었습니다. 감사합니다.');
-                document.getElementById('surveyForm').innerHTML = '<p style="text-align:center; font-size:18px; padding:50px;">참여 인원이 마감되었습니다.</p>';
-                return null;
-            }
-            
-            let group;
-            if (countA < CONFIG.GROUP_SIZE && countB < CONFIG.GROUP_SIZE) {
-                group = Math.random() < 0.5 ? 'A' : 'B';
-            } else if (countA < CONFIG.GROUP_SIZE) {
-                group = 'A';
-            } else {
-                group = 'B';
-            }
-            return group;
-        }
-        
-        function confirmGroupAssignment(group) {
-            let countA = parseInt(localStorage.getItem('surveyCountA') || '0');
-            let countB = parseInt(localStorage.getItem('surveyCountB') || '0');
-            if (group === 'A') {
-                countA++;
-                localStorage.setItem('surveyCountA', countA);
-            } else {
-                countB++;
-                localStorage.setItem('surveyCountB', countB);
-            }
-            return group;
-        }
-        
-        function insertVideo(group) {
-            const videoFile = group === 'A' ? CONFIG.VIDEO_A : CONFIG.VIDEO_B;
-            const container = document.getElementById('experimentVideoContainer');
-            container.innerHTML = `
-                <video controls controlsList="nodownload">
-                    <source src="${videoFile}" type="video/mp4">
-                    귀하의 브라우저는 비디오 태그를 지원하지 않습니다.
-                </video>`;
-            const countA = localStorage.getItem('surveyCountA') || '0';
-            const countB = localStorage.getItem('surveyCountB') || '0';
-            document.getElementById('groupInfo').textContent = `그룹 ${group} (제출 시 카운트 | 현재 A: ${countA}/20, B: ${countB}/20)`;
-        }
-        
-        // ⭐️ 데이터 전송 우회 및 제출 처리 로직 ⭐️
-        let isFormSubmitted = false;
 
-        document.getElementById('surveyForm').addEventListener('submit', function(e) {
-            // e.preventDefault() 를 삭제하여 기본 폼 전송 기능이 동작하게 만듭니다.
-            
-            const submitBtn = this.querySelector('.submit-btn');
-            submitBtn.innerText = "데이터 전송 중...";
-            submitBtn.disabled = true;
-
-            const assignedGroup = confirmGroupAssignment(tempGroup);
-            
-            // 숨겨진 필드에 시간과 그룹 정보 채워넣기
-            document.getElementById('hidden_timestamp').value = new Date().toISOString();
-            document.getElementById('hidden_group').value = assignedGroup;
-            
-            // 로컬 백업용 데이터 저장
-            const formData = new FormData(this);
-            const data = {};
-            for (let [key, value] of formData.entries()) {
-                data[key] = value;
-            }
-            const responses = JSON.parse(localStorage.getItem('surveyResponses') || '[]');
-            responses.push(data);
-            localStorage.setItem('surveyResponses', JSON.stringify(responses));
-            
-            isFormSubmitted = true;
-        });
-
-        // ⭐️ 숨겨진 iframe이 로드되면 전송이 완료된 것으로 판단 ⭐️
-        document.getElementById('hidden_iframe').addEventListener('load', function() {
-            if (isFormSubmitted) {
-                const assignedGroup = document.getElementById('hidden_group').value;
-                const countA = localStorage.getItem('surveyCountA') || '0';
-                const countB = localStorage.getItem('surveyCountB') || '0';
-                document.getElementById('groupInfo').textContent = `그룹 ${assignedGroup} (제출완료 | 현재 A: ${countA}/20, B: ${countB}/20)`;
-                
-                alert('설문에 응해주셔서 감사합니다.');
-                document.getElementById('surveyForm').innerHTML = '<p style="text-align:center; font-size:18px; padding:50px;"><strong>설문에 응해주셔서 감사합니다.</strong></p>';
-                
-                isFormSubmitted = false; // 상태 초기화
-            }
-        });
-        
-        function downloadCSV() {
-            const responses = JSON.parse(localStorage.getItem('surveyResponses') || '[]');
-            if (responses.length === 0) { alert('아직 응답이 없습니다.'); return; }
-            const allKeys = new Set();
-            responses.forEach(r => Object.keys(r).forEach(k => allKeys.add(k)));
-            const headers = Array.from(allKeys);
-            let csv = headers.join(',') + '\n';
-            responses.forEach(r => {
-                const row = headers.map(h => {
-                    const v = r[h] || '';
-                    return (v.toString().includes(',') || v.toString().includes('"')) ? `"${v.toString().replace(/"/g, '""')}"` : v;
-                });
-                csv += row.join(',') + '\n';
-            });
-            const BOM = '\uFEFF';
-            const blob = new Blob([BOM + csv], { type: 'text/csv;charset=utf-8;' });
-            const link = document.createElement('a');
-            link.setAttribute('href', URL.createObjectURL(blob));
-            link.setAttribute('download', `설문결과_${new Date().toISOString().split('T')[0]}.csv`);
-            link.style.visibility = 'hidden';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-        
-        function viewResponsesInConsole() {
-            const responses = JSON.parse(localStorage.getItem('surveyResponses') || '[]');
-            console.clear();
-            console.log('=== 설문 응답 데이터 ===');
-            console.table(responses);
-            alert(`콘솔에 ${responses.length}개의 응답이 표시되었습니다. F12를 눌러 확인하세요.`);
-        }
-        
-        function resetSurvey() {
-            if (confirm('정말로 모든 데이터를 초기화하시겠습니까?')) {
-                localStorage.removeItem('surveyCountA');
-                localStorage.removeItem('surveyCountB');
-                localStorage.removeItem('surveyResponses');
-                location.reload();
-            }
-        }
-        
         window.addEventListener('load', function() {
             tempGroup = assignTempGroup();
             if (tempGroup) insertVideo(tempGroup);
