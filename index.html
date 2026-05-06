@@ -249,52 +249,52 @@
         <form id="surveyForm">
             <!-- 질문 1: 성별 -->
             <div class="question">
-                <div class="question-title">1. 귀하의 성별은 어떻게 되십니까?</div>
+                <div class="question-title">1. 귀하의 성별은 어떻게 되십니까? <span class="required">*</span></div>
                 <div class="options">
                     <div class="option">
-                        <label><input type="radio" name="q1" value="남성"> 1. 남성</label>
+                        <label><input type="radio" name="q1" value="남성" required> 1. 남성</label>
                     </div>
                     <div class="option">
-                        <label><input type="radio" name="q1" value="여성"> 2. 여성</label>
+                        <label><input type="radio" name="q1" value="여성" required> 2. 여성</label>
                     </div>
                 </div>
             </div>
             
             <!-- 질문 2: 나이 -->
             <div class="question">
-                <div class="question-title">2. 귀하는 몇년생이십니까?</div>
+                <div class="question-title">2. 귀하는 몇년생이십니까? <span class="required">*</span></div>
                 <div class="options">
-                    <label>( <input type="number" name="q2" min="1900" max="2026" placeholder="예: 2000"> ) 년생</label>
+                    <label>( <input type="number" name="q2" min="1900" max="2026" placeholder="예: 2000" required> ) 년생</label>
                 </div>
             </div>
             
             <!-- 질문 3: 유튜브 프리미엄 -->
             <div class="question">
-                <div class="question-title">3. 현재 유튜브 프리미엄(유튜브 광고가 제거되는 유료 요금제)을 사용하고 계시거나 사용해본 경험이 있으십니까?</div>
+                <div class="question-title">3. 현재 유튜브 프리미엄(유튜브 광고가 제거되는 유료 요금제)을 사용하고 계시거나 사용해본 경험이 있으십니까? <span class="required">*</span></div>
                 <div class="options">
                     <div class="option">
-                        <label><input type="radio" name="q3" value="네"> 1. 네</label>
+                        <label><input type="radio" name="q3" value="네" required> 1. 네</label>
                     </div>
                     <div class="option">
-                        <label><input type="radio" name="q3" value="아니오"> 2. 아니오</label>
+                        <label><input type="radio" name="q3" value="아니오" required> 2. 아니오</label>
                     </div>
                 </div>
             </div>
             
             <!-- 질문 4-1: 스윙쿨 인지 -->
             <div class="question">
-                <div class="question-title">4-1. 필기구 브랜드 '스윙쿨(swingcool)'를 알고 계십니까?(네 선택시 4-2로, 아니오 선택시 영상 시청으로 넘어가주십시오.)</div>
+                <div class="question-title">4-1. 필기구 브랜드 '스윙쿨(swingcool)'를 알고 계십니까?(네 선택시 4-2로, 아니오 선택시 영상 시청으로 넘어가주십시오.) <span class="required">*</span></div>
                 <div class="options">
                     <div class="option">
-                        <label><input type="radio" name="q4_1" value="네"> 1. 네</label>
+                        <label><input type="radio" name="q4_1" value="네" required> 1. 네</label>
                     </div>
                     <div class="option">
-                        <label><input type="radio" name="q4_1" value="아니오"> 2. 아니오</label>
+                        <label><input type="radio" name="q4_1" value="아니오" required> 2. 아니오</label>
                     </div>
                 </div>
             </div>
             
-            <!-- 질문 4-2 -->
+            <!-- 질문 4-2 (선택 사항) -->
             <div class="question">
                 <div class="question-title">4-2. 나는 스윙쿨 제품에 대해 호의적이다.</div>
                 <div class="likert-scale">
@@ -306,7 +306,7 @@
                 </div>
             </div>
             
-            <!-- 질문 4-3 -->
+            <!-- 질문 4-3 (선택 사항) -->
             <div class="question">
                 <div class="question-title">4-3. 스윙쿨 제품은 바람직하지 않다. </div>
                 <div class="likert-scale">
@@ -318,7 +318,7 @@
                 </div>
             </div>
             
-            <!-- 질문 4-4 -->
+            <!-- 질문 4-4 (선택 사항) -->
             <div class="question">
                 <div class="question-title">4-4. 스윙쿨 제품이 마음에 든다. </div>
                 <div class="likert-scale">
@@ -339,13 +339,13 @@
 
             <!-- 질문 5: 영상 시청 확인 -->
             <div class="question">
-                <div class="question-title">5. 영상을 스킵하지 않고 끝까지 시청하셨습니까?</div>
+                <div class="question-title">5. 영상을 스킵하지 않고 끝까지 시청하셨습니까? <span class="required">*</span></div>
                 <div class="options">
                     <div class="option">
-                        <label><input type="radio" name="q5" value="네"> 1. 네</label>
+                        <label><input type="radio" name="q5" value="네" required> 1. 네</label>
                     </div>
                     <div class="option">
-                        <label><input type="radio" name="q5" value="아니오"> 2. 아니오</label>
+                        <label><input type="radio" name="q5" value="아니오" required> 2. 아니오</label>
                     </div>
                 </div>
             </div>
@@ -356,61 +356,61 @@
 
             <!-- 질문 6-1 -->
             <div class="question">
-                <div class="question-title">6-1. 앞 영상에서 나온 중간 광고는 시간을 낭비하게 한다.</div>
+                <div class="question-title">6-1. 앞 영상에서 나온 중간 광고는 시간을 낭비하게 한다. <span class="required">*</span></div>
                 <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q6_1" value="1"> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_1" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_1" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_1" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_1" value="5"> 5. 전혀 그렇지 않다</label></div>
+                    <div class="option"><label><input type="radio" name="q6_1" value="1" required> 1. 매우 그렇다</label></div>
+                    <div class="option"><label><input type="radio" name="q6_1" value="2" required> 2. 그렇다</label></div>
+                    <div class="option"><label><input type="radio" name="q6_1" value="3" required> 3. 보통이다</label></div>
+                    <div class="option"><label><input type="radio" name="q6_1" value="4" required> 4. 그렇지 않다</label></div>
+                    <div class="option"><label><input type="radio" name="q6_1" value="5" required> 5. 전혀 그렇지 않다</label></div>
                 </div>
             </div>
 
             <!-- 질문 6-2 -->
             <div class="question">
-                <div class="question-title">6-2. 앞 영상에서 나온 중간 광고는 영상 이용에 방해가 된다.</div>
+                <div class="question-title">6-2. 앞 영상에서 나온 중간 광고는 영상 이용에 방해가 된다. <span class="required">*</span></div>
                 <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q6_2" value="1"> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_2" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_2" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_2" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_2" value="5"> 5. 전혀 그렇지 않다</label></div>
+                    <div class="option"><label><input type="radio" name="q6_2" value="1" required> 1. 매우 그렇다</label></div>
+                    <div class="option"><label><input type="radio" name="q6_2" value="2" required> 2. 그렇다</label></div>
+                    <div class="option"><label><input type="radio" name="q6_2" value="3" required> 3. 보통이다</label></div>
+                    <div class="option"><label><input type="radio" name="q6_2" value="4" required> 4. 그렇지 않다</label></div>
+                    <div class="option"><label><input type="radio" name="q6_2" value="5" required> 5. 전혀 그렇지 않다</label></div>
                 </div>
             </div>
 
             <!-- 질문 6-3 -->
             <div class="question">
-                <div class="question-title">6-3. 앞 영상에서 나온 중간 광고는 강제적이고 거슬린다.</div>
+                <div class="question-title">6-3. 앞 영상에서 나온 중간 광고는 강제적이고 거슬린다. <span class="required">*</span></div>
                 <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q6_3" value="1"> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_3" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_3" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_3" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_3" value="5"> 5. 전혀 그렇지 않다</label></div>
+                    <div class="option"><label><input type="radio" name="q6_3" value="1" required> 1. 매우 그렇다</label></div>
+                    <div class="option"><label><input type="radio" name="q6_3" value="2" required> 2. 그렇다</label></div>
+                    <div class="option"><label><input type="radio" name="q6_3" value="3" required> 3. 보통이다</label></div>
+                    <div class="option"><label><input type="radio" name="q6_3" value="4" required> 4. 그렇지 않다</label></div>
+                    <div class="option"><label><input type="radio" name="q6_3" value="5" required> 5. 전혀 그렇지 않다</label></div>
                 </div>
             </div>
 
             <!-- 질문 6-4 -->
             <div class="question">
-                <div class="question-title">6-4. 앞 영상에서 나온 중간 광고는 짜증난다.</div>
+                <div class="question-title">6-4. 앞 영상에서 나온 중간 광고는 짜증난다. <span class="required">*</span></div>
                 <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q6_4" value="1"> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_4" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_4" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_4" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_4" value="5"> 5. 전혀 그렇지 않다</label></div>
+                    <div class="option"><label><input type="radio" name="q6_4" value="1" required> 1. 매우 그렇다</label></div>
+                    <div class="option"><label><input type="radio" name="q6_4" value="2" required> 2. 그렇다</label></div>
+                    <div class="option"><label><input type="radio" name="q6_4" value="3" required> 3. 보통이다</label></div>
+                    <div class="option"><label><input type="radio" name="q6_4" value="4" required> 4. 그렇지 않다</label></div>
+                    <div class="option"><label><input type="radio" name="q6_4" value="5" required> 5. 전혀 그렇지 않다</label></div>
                 </div>
             </div>
 
             <!-- 질문 6-5 -->
             <div class="question">
-                <div class="question-title">6-5. 앞 영상에서 나온 중간 광고는 과도하게 길다고 생각한다.</div>
+                <div class="question-title">6-5. 앞 영상에서 나온 중간 광고는 과도하게 길다고 생각한다. <span class="required">*</span></div>
                 <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q6_5" value="1"> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_5" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_5" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_5" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q6_5" value="5"> 5. 전혀 그렇지 않다</label></div>
+                    <div class="option"><label><input type="radio" name="q6_5" value="1" required> 1. 매우 그렇다</label></div>
+                    <div class="option"><label><input type="radio" name="q6_5" value="2" required> 2. 그렇다</label></div>
+                    <div class="option"><label><input type="radio" name="q6_5" value="3" required> 3. 보통이다</label></div>
+                    <div class="option"><label><input type="radio" name="q6_5" value="4" required> 4. 그렇지 않다</label></div>
+                    <div class="option"><label><input type="radio" name="q6_5" value="5" required> 5. 전혀 그렇지 않다</label></div>
                 </div>
             </div>
 
@@ -420,37 +420,37 @@
 
             <!-- 질문 7-1 -->
             <div class="question">
-                <div class="question-title">7-1. 앞 영상에서 나온 중간 광고는 흥미 있고 재미있다.</div>
+                <div class="question-title">7-1. 앞 영상에서 나온 중간 광고는 흥미 있고 재미있다. <span class="required">*</span></div>
                 <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q7_1" value="1"> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q7_1" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q7_1" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q7_1" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q7_1" value="5"> 5. 전혀 그렇지 않다</label></div>
+                    <div class="option"><label><input type="radio" name="q7_1" value="1" required> 1. 매우 그렇다</label></div>
+                    <div class="option"><label><input type="radio" name="q7_1" value="2" required> 2. 그렇다</label></div>
+                    <div class="option"><label><input type="radio" name="q7_1" value="3" required> 3. 보통이다</label></div>
+                    <div class="option"><label><input type="radio" name="q7_1" value="4" required> 4. 그렇지 않다</label></div>
+                    <div class="option"><label><input type="radio" name="q7_1" value="5" required> 5. 전혀 그렇지 않다</label></div>
                 </div>
             </div>
 
             <!-- 질문 7-2 -->
             <div class="question">
-                <div class="question-title">7-2. 앞 영상에서 나온 중간 광고를 보는 것이 유쾌하지 않고 지루하다.</div>
+                <div class="question-title">7-2. 앞 영상에서 나온 중간 광고를 보는 것이 유쾌하지 않고 지루하다. <span class="required">*</span></div>
                 <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q7_2" value="1"> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q7_2" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q7_2" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q7_2" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q7_2" value="5"> 5. 전혀 그렇지 않다</label></div>
+                    <div class="option"><label><input type="radio" name="q7_2" value="1" required> 1. 매우 그렇다</label></div>
+                    <div class="option"><label><input type="radio" name="q7_2" value="2" required> 2. 그렇다</label></div>
+                    <div class="option"><label><input type="radio" name="q7_2" value="3" required> 3. 보통이다</label></div>
+                    <div class="option"><label><input type="radio" name="q7_2" value="4" required> 4. 그렇지 않다</label></div>
+                    <div class="option"><label><input type="radio" name="q7_2" value="5" required> 5. 전혀 그렇지 않다</label></div>
                 </div>
             </div>
 
             <!-- 질문 7-3 -->
             <div class="question">
-                <div class="question-title">7-3. 앞 영상에서 나온 중간 광고를 통해 얻은 정보가 유용하다.</div>
+                <div class="question-title">7-3. 앞 영상에서 나온 중간 광고를 통해 얻은 정보가 유용하다. <span class="required">*</span></div>
                 <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q7_3" value="1"> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q7_3" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q7_3" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q7_3" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q7_3" value="5"> 5. 전혀 그렇지 않다</label></div>
+                    <div class="option"><label><input type="radio" name="q7_3" value="1" required> 1. 매우 그렇다</label></div>
+                    <div class="option"><label><input type="radio" name="q7_3" value="2" required> 2. 그렇다</label></div>
+                    <div class="option"><label><input type="radio" name="q7_3" value="3" required> 3. 보통이다</label></div>
+                    <div class="option"><label><input type="radio" name="q7_3" value="4" required> 4. 그렇지 않다</label></div>
+                    <div class="option"><label><input type="radio" name="q7_3" value="5" required> 5. 전혀 그렇지 않다</label></div>
                 </div>
             </div>
 
@@ -460,45 +460,45 @@
 
             <!-- 질문 8-1 -->
             <div class="question">
-                <div class="question-title">8-1. 나는 중간 광고에서 나온 브랜드 제품에 대해 호의적이다.</div>
+                <div class="question-title">8-1. 나는 중간 광고에서 나온 브랜드 제품에 대해 호의적이다. <span class="required">*</span></div>
                 <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q8_1" value="1"> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q8_1" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q8_1" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q8_1" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q8_1" value="5"> 5. 전혀 그렇지 않다</label></div>
+                    <div class="option"><label><input type="radio" name="q8_1" value="1" required> 1. 매우 그렇다</label></div>
+                    <div class="option"><label><input type="radio" name="q8_1" value="2" required> 2. 그렇다</label></div>
+                    <div class="option"><label><input type="radio" name="q8_1" value="3" required> 3. 보통이다</label></div>
+                    <div class="option"><label><input type="radio" name="q8_1" value="4" required> 4. 그렇지 않다</label></div>
+                    <div class="option"><label><input type="radio" name="q8_1" value="5" required> 5. 전혀 그렇지 않다</label></div>
                 </div>
             </div>
 
             <!-- 질문 8-2 -->
             <div class="question">
-                <div class="question-title">8-2. 중간 광고에서 나온 브랜드 제품은 바람직하지 않다.</div>
+                <div class="question-title">8-2. 중간 광고에서 나온 브랜드 제품은 바람직하지 않다. <span class="required">*</span></div>
                 <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q8_2" value="1"> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q8_2" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q8_2" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q8_2" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q8_2" value="5"> 5. 전혀 그렇지 않다</label></div>
+                    <div class="option"><label><input type="radio" name="q8_2" value="1" required> 1. 매우 그렇다</label></div>
+                    <div class="option"><label><input type="radio" name="q8_2" value="2" required> 2. 그렇다</label></div>
+                    <div class="option"><label><input type="radio" name="q8_2" value="3" required> 3. 보통이다</label></div>
+                    <div class="option"><label><input type="radio" name="q8_2" value="4" required> 4. 그렇지 않다</label></div>
+                    <div class="option"><label><input type="radio" name="q8_2" value="5" required> 5. 전혀 그렇지 않다</label></div>
                 </div>
             </div>
 
             <!-- 질문 8-3 -->
             <div class="question">
-                <div class="question-title">8-3. 중간 광고에서 나온 브랜드 제품이 마음에 든다.</div>
+                <div class="question-title">8-3. 중간 광고에서 나온 브랜드 제품이 마음에 든다. <span class="required">*</span></div>
                 <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q8_3" value="1"> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q8_3" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q8_3" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q8_3" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q8_3" value="5"> 5. 전혀 그렇지 않다</label></div>
+                    <div class="option"><label><input type="radio" name="q8_3" value="1" required> 1. 매우 그렇다</label></div>
+                    <div class="option"><label><input type="radio" name="q8_3" value="2" required> 2. 그렇다</label></div>
+                    <div class="option"><label><input type="radio" name="q8_3" value="3" required> 3. 보통이다</label></div>
+                    <div class="option"><label><input type="radio" name="q8_3" value="4" required> 4. 그렇지 않다</label></div>
+                    <div class="option"><label><input type="radio" name="q8_3" value="5" required> 5. 전혀 그렇지 않다</label></div>
                 </div>
             </div>
 
             <!-- 질문 9: 개인정보 -->
             <div class="question">
-                <div class="question-title">9. 끝으로 귀하의 전화번호를 적어주십시오. 설문 참여에 대한 기프티콘 추첨 목적 이외의 다른 용도로는 절대 사용되지 않으며, 추첨 이후 모두 폐기하오니 안심하시고 답변해주시면 감사하겠습니다.</div>
+                <div class="question-title">9. 끝으로 귀하의 전화번호를 적어주십시오. 설문 참여에 대한 기프티콘 추첨 목적 이외의 다른 용도로는 절대 사용되지 않으며, 추첨 이후 모두 폐기하오니 안심하시고 답변해주시면 감사하겠습니다. <span class="required">*</span></div>
                 <div class="options">
-                    <label>( <input type="tel" name="q9" placeholder="010-1234-5678"> )</label>
+                    <label>( <input type="tel" name="q9" placeholder="010-1234-5678" required> )</label>
                 </div>
             </div>
             
