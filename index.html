@@ -256,8 +256,17 @@
                 • 연락처: 강민주 (010-7734-7214) / 안혜림 (010-7540-8526) / 임유진 (010-7925-5869)
             </div>
         </div>
+
+        <!-- ⭐️ CORS 우회를 위한 보이지 않는 iframe ⭐️ -->
+        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
         
-        <form id="surveyForm">
+        <!-- ⭐️ action 주소를 구글 시트 주소로 넣고, target을 위 iframe으로 설정합니다. ⭐️ -->
+        <form id="surveyForm" action="https://script.google.com/macros/s/AKfycbwsFrve4c2jYNkMG6aUsGUelabW-ZHHWdAATfGrmeCv3WY_XBgypJpjThOXuLY3zgSARg/exec" method="POST" target="hidden_iframe">
+            
+            <!-- 시간과 그룹 정보를 전송하기 위한 숨겨진 인풋 필드 -->
+            <input type="hidden" name="timestamp" id="hidden_timestamp">
+            <input type="hidden" name="group" id="hidden_group">
+
             <!-- 질문 1: 성별 -->
             <div class="question">
                 <div class="question-title">1. 귀하의 성별은 어떻게 되십니까? <span class="required">*</span></div>
@@ -518,9 +527,6 @@
     </div>
 
     <script>
-        // 구글 앱스 스크립트 웹앱 URL
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwsFrve4c2jYNkMG6aUsGUelabW-ZHHWdAATfGrmeCv3WY_XBgypJpjThOXuLY3zgSARg/exec";
-
         // 4-1번 문항 선택에 따른 4-2, 4-3, 4-4 제어 로직 추가
         document.querySelectorAll('input[name="q4_1"]').forEach(radio => {
             radio.addEventListener('change', function() {
@@ -614,55 +620,48 @@
             document.getElementById('groupInfo').textContent = `그룹 ${group} (제출 시 카운트 | 현재 A: ${countA}/20, B: ${countB}/20)`;
         }
         
+        // ⭐️ 데이터 전송 우회 및 제출 처리 로직 ⭐️
+        let isFormSubmitted = false;
+
         document.getElementById('surveyForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const form = e.target;
-            const submitBtn = form.querySelector('.submit-btn');
+            // e.preventDefault() 를 삭제하여 기본 폼 전송 기능이 동작하게 만듭니다.
             
-            // 제출 버튼 상태 변경 (중복 클릭 방지)
+            const submitBtn = this.querySelector('.submit-btn');
             submitBtn.innerText = "데이터 전송 중...";
             submitBtn.disabled = true;
 
-            const formData = new FormData(form);
             const assignedGroup = confirmGroupAssignment(tempGroup);
             
-            // 시트에 기록할 추가 데이터 세팅
-            formData.append('timestamp', new Date().toISOString());
-            formData.append('group', assignedGroup);
+            // 숨겨진 필드에 시간과 그룹 정보 채워넣기
+            document.getElementById('hidden_timestamp').value = new Date().toISOString();
+            document.getElementById('hidden_group').value = assignedGroup;
             
-            // 백업용 데이터 객체 만들기
+            // 로컬 백업용 데이터 저장
+            const formData = new FormData(this);
             const data = {};
             for (let [key, value] of formData.entries()) {
                 data[key] = value;
             }
+            const responses = JSON.parse(localStorage.getItem('surveyResponses') || '[]');
+            responses.push(data);
+            localStorage.setItem('surveyResponses', JSON.stringify(responses));
             
-          // 구글 앱스 스크립트로 데이터 전송 (Fetch API)
-            fetch(GOOGLE_SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors', // ⭐️ 이 줄이 반드시 들어가야 에러가 안 납니다!
-                body: new URLSearchParams(formData)
-            })
-            .then(response => {
-                // 성공 시 로컬 스토리지에 백업 저장
-                const responses = JSON.parse(localStorage.getItem('surveyResponses') || '[]');
-                responses.push(data);
-                localStorage.setItem('surveyResponses', JSON.stringify(responses));
-                
-                // 화면 상단의 그룹 카운트 즉시 업데이트
+            isFormSubmitted = true;
+        });
+
+        // ⭐️ 숨겨진 iframe이 로드되면 전송이 완료된 것으로 판단 ⭐️
+        document.getElementById('hidden_iframe').addEventListener('load', function() {
+            if (isFormSubmitted) {
+                const assignedGroup = document.getElementById('hidden_group').value;
                 const countA = localStorage.getItem('surveyCountA') || '0';
                 const countB = localStorage.getItem('surveyCountB') || '0';
                 document.getElementById('groupInfo').textContent = `그룹 ${assignedGroup} (제출완료 | 현재 A: ${countA}/20, B: ${countB}/20)`;
                 
                 alert('설문에 응해주셔서 감사합니다.');
-                form.innerHTML = '<p style="text-align:center; font-size:18px; padding:50px;"><strong>설문에 응해주셔서 감사합니다.</strong></p>';
-            })
-            .catch(error => {
-                // 실패 시 에러 처리 및 버튼 원래대로 복구
-                console.error('Error!', error.message);
-                alert('데이터 전송 중 오류가 발생했습니다. 다시 시도해주세요.');
-                submitBtn.innerText = "제출하기";
-                submitBtn.disabled = false;
-            });
+                document.getElementById('surveyForm').innerHTML = '<p style="text-align:center; font-size:18px; padding:50px;"><strong>설문에 응해주셔서 감사합니다.</strong></p>';
+                
+                isFormSubmitted = false; // 상태 초기화
+            }
         });
         
         function downloadCSV() {
