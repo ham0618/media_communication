@@ -112,6 +112,12 @@
         input[type="number"], input[type="tel"] {
             width: 200px;
         }
+
+        /* 비활성화된 항목의 스타일 처리 */
+        input[type="radio"]:disabled + label {
+            color: #999;
+            cursor: not-allowed;
+        }
         
         .video-section {
             margin: 40px 0;
@@ -294,39 +300,39 @@
                 </div>
             </div>
             
-            <!-- 질문 4-2 (선택 사항) -->
+            <!-- 질문 4-2 (조건부) -->
             <div class="question">
-                <div class="question-title">4-2. 나는 스윙쿨 제품에 대해 호의적이다.</div>
+                <div class="question-title">4-2. 나는 스윙쿨 제품에 대해 호의적이다. <span class="required q4-req" style="display:none;">*</span></div>
                 <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q4_2" value="1"> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q4_2" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q4_2" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q4_2" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q4_2" value="5"> 5. 전혀 그렇지 않다</label></div>
+                    <div class="option"><label><input type="radio" name="q4_2" value="1" disabled> 1. 매우 그렇다</label></div>
+                    <div class="option"><label><input type="radio" name="q4_2" value="2" disabled> 2. 그렇다</label></div>
+                    <div class="option"><label><input type="radio" name="q4_2" value="3" disabled> 3. 보통이다</label></div>
+                    <div class="option"><label><input type="radio" name="q4_2" value="4" disabled> 4. 그렇지 않다</label></div>
+                    <div class="option"><label><input type="radio" name="q4_2" value="5" disabled> 5. 전혀 그렇지 않다</label></div>
                 </div>
             </div>
             
-            <!-- 질문 4-3 (선택 사항) -->
+            <!-- 질문 4-3 (조건부) -->
             <div class="question">
-                <div class="question-title">4-3. 스윙쿨 제품은 바람직하지 않다. </div>
+                <div class="question-title">4-3. 스윙쿨 제품은 바람직하지 않다. <span class="required q4-req" style="display:none;">*</span></div>
                 <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q4_3" value="1"> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q4_3" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q4_3" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q4_3" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q4_3" value="5"> 5. 전혀 그렇지 않다</label></div>
+                    <div class="option"><label><input type="radio" name="q4_3" value="1" disabled> 1. 매우 그렇다</label></div>
+                    <div class="option"><label><input type="radio" name="q4_3" value="2" disabled> 2. 그렇다</label></div>
+                    <div class="option"><label><input type="radio" name="q4_3" value="3" disabled> 3. 보통이다</label></div>
+                    <div class="option"><label><input type="radio" name="q4_3" value="4" disabled> 4. 그렇지 않다</label></div>
+                    <div class="option"><label><input type="radio" name="q4_3" value="5" disabled> 5. 전혀 그렇지 않다</label></div>
                 </div>
             </div>
             
-            <!-- 질문 4-4 (선택 사항) -->
+            <!-- 질문 4-4 (조건부) -->
             <div class="question">
-                <div class="question-title">4-4. 스윙쿨 제품이 마음에 든다. </div>
+                <div class="question-title">4-4. 스윙쿨 제품이 마음에 든다. <span class="required q4-req" style="display:none;">*</span></div>
                 <div class="likert-scale">
-                    <div class="option"><label><input type="radio" name="q4_4" value="1"> 1. 매우 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q4_4" value="2"> 2. 그렇다</label></div>
-                    <div class="option"><label><input type="radio" name="q4_4" value="3"> 3. 보통이다</label></div>
-                    <div class="option"><label><input type="radio" name="q4_4" value="4"> 4. 그렇지 않다</label></div>
-                    <div class="option"><label><input type="radio" name="q4_4" value="5"> 5. 전혀 그렇지 않다</label></div>
+                    <div class="option"><label><input type="radio" name="q4_4" value="1" disabled> 1. 매우 그렇다</label></div>
+                    <div class="option"><label><input type="radio" name="q4_4" value="2" disabled> 2. 그렇다</label></div>
+                    <div class="option"><label><input type="radio" name="q4_4" value="3" disabled> 3. 보통이다</label></div>
+                    <div class="option"><label><input type="radio" name="q4_4" value="4" disabled> 4. 그렇지 않다</label></div>
+                    <div class="option"><label><input type="radio" name="q4_4" value="5" disabled> 5. 전혀 그렇지 않다</label></div>
                 </div>
             </div>
 
@@ -507,6 +513,27 @@
     </div>
 
     <script>
+        // 4-1번 문항 선택에 따른 4-2, 4-3, 4-4 제어 로직 추가
+        document.querySelectorAll('input[name="q4_1"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const isYes = this.value === '네';
+                
+                // 4-2, 4-3, 4-4 라디오 버튼 제어
+                ['q4_2', 'q4_3', 'q4_4'].forEach(name => {
+                    document.querySelectorAll(`input[name="${name}"]`).forEach(input => {
+                        input.disabled = !isYes;
+                        input.required = isYes;
+                        if (!isYes) input.checked = false; // 아니오 선택 시 기존 체크 해제
+                    });
+                });
+                
+                // 필수 표시(*) 제어
+                document.querySelectorAll('.q4-req').forEach(span => {
+                    span.style.display = isYes ? 'inline' : 'none';
+                });
+            });
+        });
+
         const CONFIG = {
             MAX_PARTICIPANTS: 40,
             GROUP_SIZE: 20,
