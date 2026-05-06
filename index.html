@@ -173,6 +173,11 @@
             background-color: #45a049;
         }
         
+        .submit-btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
         .group-info {
             position: fixed;
             top: 10px;
@@ -513,6 +518,9 @@
     </div>
 
     <script>
+        // 구글 앱스 스크립트 웹앱 URL
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyWsvuWN5BQzWlMVYOJocDPmYnGO00m-eED_tyQDgSE-LcJXpMGbp4Iz0P5Q2wXgVn9kQ/exec";
+
         // 4-1번 문항 선택에 따른 4-2, 4-3, 4-4 제어 로직 추가
         document.querySelectorAll('input[name="q4_1"]').forEach(radio => {
             radio.addEventListener('change', function() {
@@ -609,24 +617,51 @@
         document.getElementById('surveyForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const form = e.target;
+            const submitBtn = form.querySelector('.submit-btn');
+            
+            // 제출 버튼 상태 변경 (중복 클릭 방지)
+            submitBtn.innerText = "데이터 전송 중...";
+            submitBtn.disabled = true;
+
             const formData = new FormData(form);
             const assignedGroup = confirmGroupAssignment(tempGroup);
             
-            const data = {
-                timestamp: new Date().toISOString(),
-                group: assignedGroup,
-            };
+            // 시트에 기록할 추가 데이터 세팅
+            formData.append('timestamp', new Date().toISOString());
+            formData.append('group', assignedGroup);
             
+            // 백업용 데이터 객체 만들기
+            const data = {};
             for (let [key, value] of formData.entries()) {
                 data[key] = value;
             }
             
-            const responses = JSON.parse(localStorage.getItem('surveyResponses') || '[]');
-            responses.push(data);
-            localStorage.setItem('surveyResponses', JSON.stringify(responses));
-            
-            alert('설문에 응해주셔서 감사합니다.');
-            form.innerHTML = '<p style="text-align:center; font-size:18px; padding:50px;">설문에 응해주셔서 감사합니다.</p>';
+            // 구글 앱스 스크립트로 데이터 전송 (Fetch API)
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                // 성공 시 로컬 스토리지에 백업 저장
+                const responses = JSON.parse(localStorage.getItem('surveyResponses') || '[]');
+                responses.push(data);
+                localStorage.setItem('surveyResponses', JSON.stringify(responses));
+                
+                // 화면 상단의 그룹 카운트 즉시 업데이트
+                const countA = localStorage.getItem('surveyCountA') || '0';
+                const countB = localStorage.getItem('surveyCountB') || '0';
+                document.getElementById('groupInfo').textContent = `그룹 ${assignedGroup} (제출완료 | 현재 A: ${countA}/20, B: ${countB}/20)`;
+                
+                alert('설문에 응해주셔서 감사합니다.');
+                form.innerHTML = '<p style="text-align:center; font-size:18px; padding:50px;">설문에 응해주셔서 감사합니다.</p>';
+            })
+            .catch(error => {
+                // 실패 시 에러 처리 및 버튼 원래대로 복구
+                console.error('Error!', error.message);
+                alert('데이터 전송 중 오류가 발생했습니다. 인터넷 연결을 확인하고 다시 시도해주세요.');
+                submitBtn.innerText = "제출하기";
+                submitBtn.disabled = false;
+            });
         });
         
         function downloadCSV() {
