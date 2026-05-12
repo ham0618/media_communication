@@ -553,9 +553,9 @@
         
         let tempGroup = null;
         
-        // 50% 확률로 A 또는 B 그룹 무작위 배정
+        // ★ 항상 B 그룹으로 배정되도록 수정된 부분
         function assignTempGroup() {
-            return Math.random() < 0.5 ? 'A' : 'B';
+            return 'B';
         }
         
         // 배정된 그룹에 맞게 영상 삽입 및 화면 표시
